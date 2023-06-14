@@ -8,20 +8,47 @@ const NavBar = () => {
             <Navbar.Brand href="#home"><Image src={logo} alt="logo" height="45" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
-                <Nav
-                    className="mr-auto my-2 my-lg-0"
-                    style={{ maxHeight: '100px' }}
-                    navbarScroll
-                >
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#signin">Sign In</Nav.Link>
-                    <Nav.Link href="#signup">Sign Up</Nav.Link>
-                    {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
-                </NavDropdown> */}
+                <Nav className="ml-auto" navbarScroll>
+                    <Nav.Link href="#home">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        <br />
+                        Home
+                    </Nav.Link>
+                    {/* User Authenticated */}
+                    <Nav.Link href="#boosted">
+                        <i class="fa-solid fa-rocket"></i>
+                        <br />
+                        Boosted
+                    </Nav.Link>
+                    <Nav.Link href="#requests">
+                        <i class="fa-solid fa-envelope"></i>
+                        <br />
+                        Requests
+                    </Nav.Link>
+                    <Nav.Link href="#logout">
+                        <i class="fa-solid fa-user-minus"></i>
+                        <br />
+                        Logout
+                    </Nav.Link>
+                    <Nav.Link href="#profile">
+                        <i class="fa-solid fa-user"></i>
+                        <br />
+                        User Avatar
+                    </Nav.Link>
+                    {/* User Authenticated End */}
+
+                    {/* User Not Authenticated */}
+                    <Nav.Link href="#signin">
+                        <i class="fa-solid fa-user"></i>
+                        <br />
+                        Sign In
+                    </Nav.Link>
+                    <Nav.Link href="#signup">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <br />
+                        Sign Up
+                    </Nav.Link>
+                    {/* User Not Authenticated */}
                 </Nav>
             </Navbar.Collapse>
         </Container>
