@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/logout" render={() => <h1>Logout</h1>} />
         </Switch>
         <Switch>
-          <Route exact path="/404" render={() => <h1>Page not found 404</h1>} />
+          <Route render={() => <h1>Page not found 404</h1>} />
         </Switch>
       </Container>
     </div>
