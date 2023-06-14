@@ -1,14 +1,15 @@
 import React from 'react'
+import styles from '../styles/NavBar.module.css'
 import { Nav, Navbar, Container, Image } from 'react-bootstrap'
 import logo from '../assets/logo.png'
 
 const NavBar = () => {
-    return <Navbar bg="light" expand="md" fixed="top">
+    return <Navbar className={styles.NavBar} expand="md" fixed="top">
         <Container>
             <Navbar.Brand href="#home"><Image src={logo} alt="logo" height="45" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
-                <Nav className="ml-auto" navbarScroll>
+                <Nav className="ml-auto text-center" navbarScroll>
                     <Nav.Link href="#home">
                         <i class="fa-solid fa-house-chimney"></i>
                         <br />
