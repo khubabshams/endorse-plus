@@ -7,6 +7,10 @@
     padding-top: 80px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 a {
     color: inherit;
 }
@@ -15,4 +19,3 @@ a:hover {
     text-decoration: none;
     color: #c8c8ca8c;
 }
-

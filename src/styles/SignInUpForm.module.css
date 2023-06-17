@@ -1,0 +1,12 @@
+.Form {
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+.Input {
+    border: 1px solid #c8c8ca8c;
+    box-sizing: border-box;
+    border-radius: 0%;
+}
