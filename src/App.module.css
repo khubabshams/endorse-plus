@@ -7,6 +7,10 @@
     padding-top: 80px;
 }
 
+.Alert {
+    border-radius: 0%;
+}
+
 * {
     box-sizing: border-box;
 }
