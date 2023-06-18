@@ -6,23 +6,28 @@ import './api/axiosDefaults'
 import SignUpForm from './pages/auth/SignUpForm';
 import SignInForm from './pages/auth/SignInForm';
 
+
+
 function App() {
+  
   return (
-    <div className={styles.App}>
-      <NavBar />
-      <Container className={styles.Main}>
-        <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
-          <Route exact path="/signin" render={() => <SignInForm />} />
-          <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/boosted" render={() => <h1>Boosted</h1>} />
-          <Route exact path="/requests" render={() => <h1>Requests</h1>} />
-          <Route exact path="/profile" render={() => <h1>Profile</h1>} />
-          <Route exact path="/logout" render={() => <h1>Logout</h1>} />
-          <Route render={() => <h1>Page not found 404</h1>} />
-        </Switch>
-      </Container>
-    </div>
+    
+        <div className={styles.App}>
+          <NavBar />
+          <Container className={styles.Main}>
+            <Switch>
+              <Route exact path="/" render={() => <h1>Home</h1>} />
+              <Route exact path="/signin" render={() => <SignInForm />} />
+              <Route exact path="/signup" render={() => <SignUpForm />} />
+              <Route exact path="/boosted" render={() => <h1>Boosted</h1>} />
+              <Route exact path="/requests" render={() => <h1>Requests</h1>} />
+              <Route exact path="/profile" render={() => <h1>Profile</h1>} />
+              <Route exact path="/logout" render={() => <h1>Logout</h1>} />
+              <Route render={() => <h1>Page not found 404</h1>} />
+            </Switch>
+          </Container>
+        </div>
+      
   );
 }
 
