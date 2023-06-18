@@ -6,6 +6,7 @@ import appStyles from '../../App.module.css'
 
 import axios from 'axios'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 const SignUpForm = () => {
     const [signUpData, setSignUpData] = useState({
@@ -108,6 +109,9 @@ const SignUpForm = () => {
                     {message}
                 </Alert>
             )}
+            <Link to="/signin">
+                Already have an account? <span>click here to sign in!</span>
+            </Link>
         </Form>
     </Container>)
 
