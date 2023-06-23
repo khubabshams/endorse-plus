@@ -32,6 +32,16 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
+        to="/recommendations/create/1"
+      >
+        {/* TODO: for test, should be moved to profile tile component */}
+        <i className="fa-solid fa-plus"></i>
+        <br />
+        Create
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
         to="/boosted"
       >
         <i className="fa-solid fa-rocket"></i>
