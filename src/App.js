@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/logout" render={() => <h1>Logout</h1>} />
           <Route
             exact
-            path="/recommendations/create/:profile_id"
+            path="/recommendations/create/:receiver_id"
             render={() => <RecoommendationCreateForm />}
           />
           <Route exact path="/recommendations/:id" render={() => <RecoommendationPage />} />

@@ -9,7 +9,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const RecoommendationCreateForm = () => {
   const currentUser = useCurrentUser();
-  const { profile_id } = useParams();
+  const { receiver_id } = useParams();
 
   const [recommendationData, setRecommendationData] = useState({
     receiver: "",
@@ -34,7 +34,7 @@ const RecoommendationCreateForm = () => {
         const [{ data: relationsData }, { data: receiver }] = await Promise.all(
           [
             axiosReq.get(`/relationships/`),
-            axiosReq.get(`/profiles/${profile_id}`),
+            axiosReq.get(`/profiles/${receiver_id}`),
           ]
         );
 
