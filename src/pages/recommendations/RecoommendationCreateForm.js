@@ -74,11 +74,13 @@ const RecoommendationCreateForm = () => {
     event.preventDefault();
 
     const formData = new FormData();
+    const experience_id =
+      related_experience > 0 ? Number(related_experience) : null;
 
     formData.append("profile", currentUser?.profile_id);
     formData.append("receiver", receiverData?.id);
     formData.append("content", content);
-    formData.append("related_experience", Number(related_experience));
+    formData.append("related_experience", experience_id);
     formData.append("relation", relation);
 
     try {
@@ -119,6 +121,7 @@ const RecoommendationCreateForm = () => {
             name="related_experience"
             value={related_experience}
             onChange={handleChange}
+            required
           >
             <option></option>
             {experiences.map((experience) => (
@@ -162,6 +165,7 @@ const RecoommendationCreateForm = () => {
             name="content"
             value={content}
             onChange={handleChange}
+            required
           />
         </Form.Group>
         {errors.content?.map((message, idx) => (
@@ -182,6 +186,16 @@ const RecoommendationCreateForm = () => {
             {message}
           </Alert>
         ))}
+        {errors.detail ? (
+          <Alert
+            className={`${appStyles.Alert} mt-3`}
+            variant="warning"
+          >
+            {errors.detail}
+          </Alert>
+        ) : (
+          <></>
+        )}
       </Form>
     </Container>
   );
