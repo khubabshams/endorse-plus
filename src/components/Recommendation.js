@@ -76,38 +76,32 @@ const Recommendation = (props) => {
         recommendation: id,
         profile: currentUser?.profile_id,
       });
-      setRecommendations((prevRecommendations) => ({
-        ...prevRecommendations,
-        results: prevRecommendations.results.map((recommendation) => {
-          return recommendation.id === id
-            ? {
-                ...recommendation,
-                boosts_count: recommendation.boosts_count + 1,
-                boost_id: data.id,
-              }
-            : recommendation;
-        }),
-      }));
+      updateRecommendation({
+        boosts_count: boosts_count + 1,
+        boost_id: data.id,
+      });
     } catch (err) {
       console.log(err);
     }
   };
 
+  const updateRecommendation = (updatedData) => {
+    setRecommendations((prevRecommendations) => ({
+      ...prevRecommendations,
+      results: prevRecommendations.results.map((recommendation) => {
+        return recommendation.id === id
+          ? {
+              ...recommendation,
+              ...updatedData,
+            }
+          : recommendation;
+      }),
+    }));
+  };
   const handleUnBoost = async () => {
     try {
       await axiosRes.delete(`/boosts/${boost_id}`);
-      setRecommendations((prevRecommendations) => ({
-        ...prevRecommendations,
-        results: prevRecommendations.results.map((recommendation) => {
-          return recommendation.id === id
-            ? {
-                ...recommendation,
-                boosts_count: recommendation.boosts_count - 1,
-                boost_id: null,
-              }
-            : recommendation;
-        }),
-      }));
+      updateRecommendation({ boosts_count: boosts_count - 1, boost_id: null });
     } catch (err) {
       console.log(err);
     }
@@ -119,17 +113,7 @@ const Recommendation = (props) => {
         await axiosRes.put(`/recommendations/feature/${id}`, {
           is_featured: featured,
         });
-        setRecommendations((prevRecommendations) => ({
-          ...prevRecommendations,
-          results: prevRecommendations.results.map((recommendation) => {
-            return recommendation.id === id
-              ? {
-                  ...recommendation,
-                  is_featured: featured,
-                }
-              : recommendation;
-          }),
-        }));
+        updateRecommendation({ is_featured: featured });
       } catch (err) {
         console.log(err);
       }
@@ -188,6 +172,7 @@ const Recommendation = (props) => {
         {...props}
         edit={true}
         setEditMode={setEditMode}
+        updateRecommendation={updateRecommendation}
       />
     </div>
   );

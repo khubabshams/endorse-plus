@@ -11,27 +11,21 @@ const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();
 
   const [recommendationData, setRecommendationData] = useState({
-    receiver: props.receiver ? props.receiver : "",
-    content: props.content ? props.content : "",
-    related_experience: props.related_experience
-      ? props.related_experience
-      : "",
-    relation: props.relation ? props.relation : "",
+    receiver: props?.receiver,
+    content: props?.content,
+    related_experience: props?.related_experience,
+    relation: props?.relation,
   });
 
   const [relations, setRelations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [receiverData, setReceiverData] = useState({});
+  const [errors, setErrors] = useState({});
 
   const { receiver_id } = useParams();
-  const {
-    receiver = receiver_id,
-    content,
-    related_experience,
-    relation,
-  } = recommendationData;
+  const { receiver, content, related_experience, relation } =
+    recommendationData;
 
-  const [errors, setErrors] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -83,7 +77,7 @@ const RecommendationCreateEditForm = (props) => {
     const experience_id =
       related_experience > 0 ? Number(related_experience) : null;
 
-    formData.append("profile", currentUser?.profile_id);
+    formData.append("profile", Number(currentUser?.profile_id));
     formData.append("receiver", receiver ? receiver : receiver_id);
     formData.append("content", content);
     formData.append("related_experience", experience_id);
@@ -94,19 +88,11 @@ const RecommendationCreateEditForm = (props) => {
         ? await axiosReq.post("/recommendations/", formData)
         : await axiosReq.put(`/recommendations/${props.id}`, formData);
       if (props.edit) {
-        props.setRecommendations((prevRecommendations) => ({
-          ...prevRecommendations,
-          results: prevRecommendations.results.map((recommendation) => {
-            return recommendation.id === props.id
-              ? {
-                  ...recommendation,
-                  content: content,
-                  related_experience: experience_id,
-                  relation: relation,
-                }
-              : recommendation;
-          }),
-        }));
+        props.updateRecommendation({
+          content: content,
+          related_experience: experience_id,
+          relation: relation,
+        });
         props.setEditMode(false);
       } else {
         history.push(`/recommendations/${recommendation.id}`);
