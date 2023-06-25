@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import RecoommendationCreateForm from "./pages/recommendations/RecommendationCreateForm";
+import RecommendationCreateForm from "./pages/recommendations/RecommendationCreateForm";
 import RecommendationPage from "./pages/recommendations/RecommendationPage";
 
 function App() {
@@ -24,9 +24,13 @@ function App() {
           <Route
             exact
             path="/recommendations/create/:receiver_id"
-            render={() => <RecoommendationCreateForm />}
+            render={() => <RecommendationCreateForm />}
           />
-          <Route exact path="/recommendations/:id" render={() => <RecommendationPage />} />
+          <Route
+            exact
+            path="/recommendations/:id"
+            render={() => <RecommendationPage />}
+          />
           <Route render={() => <h1>Page not found 404</h1>} />
         </Switch>
       </Container>
