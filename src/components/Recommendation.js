@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import appStyles from "../App.module.css";
@@ -10,6 +10,7 @@ import { axiosRes } from "../api/axiosDefaults";
 
 const Recommendation = (props) => {
   const currentUser = useCurrentUser();
+  const history = useHistory();
 
   const {
     created_at,
@@ -46,6 +47,22 @@ const Recommendation = (props) => {
     relation_name ? `being his/ her ${relation_name} ` : `having a role`
   } at ${company_name}.`;
 
+  const handleEdit = () => {
+    console.log("handleEdit");
+  };
+
+  const handleDelete = async () => {
+    if (
+      window.confirm("Are you sure you want to remove this recommendation?")
+    ) {
+      try {
+        await axiosRes.delete(`/recommendations/${id}`);
+        history.goBack();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
   const handleBoost = async () => {
     try {
       const { data } = await axiosRes.post("/boosts/", {
@@ -113,11 +130,9 @@ const Recommendation = (props) => {
 
   const handleFeature = () => {
     changeFeature(true);
-    console.log("handleFeature");
   };
   const handleUnFeature = () => {
     changeFeature(false);
-    console.log("handleUnFeature");
   };
   return (
     <Card>
@@ -138,11 +153,11 @@ const Recommendation = (props) => {
           {is_owner && (
             <>
               <span
-                onClick={() => {}}
+                onClick={handleEdit}
                 className={`fa-solid fa-pen-to-square ${btnStyles.Option}`}
               ></span>
               <span
-                onClick={() => {}}
+                onClick={handleDelete}
                 className={`fa-solid fa-trash ${btnStyles.Option}`}
               ></span>
             </>
