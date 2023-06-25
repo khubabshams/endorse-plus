@@ -45,7 +45,7 @@ const Recommendation = (props) => {
     created_at !== updated_at
       ? `${created_at} edited: ${updated_at}`
       : created_at;
-  const recommendationNote = `${profile_name} recommending ${receiver_name} based on ${
+  const recommendationNote = profile_name && `${profile_name} recommending ${receiver_name} based on ${
     relation_name ? `being his/ her ${relation_name} ` : `having a role`
   } at ${company_name}.`;
 
