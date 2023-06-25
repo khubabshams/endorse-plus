@@ -7,15 +7,17 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-const RecommendationCreateForm = () => {
+const RecommendationCreateForm = (props) => {
   const currentUser = useCurrentUser();
   const { receiver_id } = useParams();
 
   const [recommendationData, setRecommendationData] = useState({
-    receiver: "",
-    content: "",
-    related_experience: "",
-    relation: "",
+    receiver: props.receiver ? props.receiver : "",
+    content: props.content ? props.content : "",
+    related_experience: props.related_experience
+      ? props.related_experience
+      : "",
+    relation: props.relation ? props.relation : "",
   });
   const [relations, setRelations] = useState([]);
   const [experiences, setExperiences] = useState([]);
@@ -31,14 +33,13 @@ const RecommendationCreateForm = () => {
       try {
         let company;
 
-        const [{ data: relationsData }, { data: receiver }] = await Promise.all(
-          [
+        const [{ data: relationsData }, { data: receiverData }] =
+          await Promise.all([
             axiosReq.get(`/relationships/`),
             axiosReq.get(`/profiles/${receiver_id}`),
-          ]
-        );
+          ]);
 
-        receiver?.experiences.map(async (experience_id) => {
+        receiverData?.experiences.map(async (experience_id) => {
           await Promise.all(
             [`/experiences/${experience_id}`].map((url) =>
               axiosReq.get(url).then(async (res) => {
@@ -54,14 +55,14 @@ const RecommendationCreateForm = () => {
         });
 
         setRelations(relationsData.results);
-        setReceiverData(receiver);
+        setReceiverData(receiverData);
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchRecommendationData();
-  }, []);
+  }, [receiver_id]);
 
   const handleChange = (event) => {
     setRecommendationData({
@@ -77,14 +78,14 @@ const RecommendationCreateForm = () => {
     const experience_id =
       related_experience > 0 ? Number(related_experience) : null;
 
-    formData.append("profile", currentUser?.profile_id);
-    formData.append("receiver", receiverData?.id);
+    // formData.append("profile", currentUser?.profile_id);
+    formData.append("receiver", receiver_id);
     formData.append("content", content);
     formData.append("related_experience", experience_id);
     formData.append("relation", relation);
 
     try {
-      const { recommendation } = await axiosReq.post(
+      const { data: recommendation } = await axiosReq.post(
         "/recommendations/",
         formData
       );
@@ -104,8 +105,8 @@ const RecommendationCreateForm = () => {
           <Form.Label>Recommendee</Form.Label>
           <Form.Control
             type="text"
-            name="receiver"
-            defaultValue={receiverData.owner}
+            name="receiver_name"
+            defaultValue={receiverData.name}
             disabled
           />
         </Form.Group>
@@ -187,10 +188,7 @@ const RecommendationCreateForm = () => {
           </Alert>
         ))}
         {errors.detail ? (
-          <Alert
-            className={`${appStyles.Alert} mt-3`}
-            variant="warning"
-          >
+          <Alert className={`${appStyles.Alert} mt-3`} variant="warning">
             {errors.detail}
           </Alert>
         ) : (
