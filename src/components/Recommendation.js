@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
@@ -7,10 +7,12 @@ import appStyles from "../App.module.css";
 import btnStyles from "../styles/Button.module.css";
 import styles from "../styles/Recommendation.module.css";
 import { axiosRes } from "../api/axiosDefaults";
+import RecommendationCreateEditForm from "../pages/recommendations/RecommendationCreateEditForm";
 
 const Recommendation = (props) => {
   const currentUser = useCurrentUser();
   const history = useHistory();
+  const [editMode, setEditMode] = useState(false);
 
   const {
     created_at,
@@ -48,21 +50,26 @@ const Recommendation = (props) => {
   } at ${company_name}.`;
 
   const handleEdit = () => {
-    console.log("handleEdit");
+    if (is_owner) {
+      setEditMode(true);
+    }
   };
 
   const handleDelete = async () => {
-    if (
-      window.confirm("Are you sure you want to remove this recommendation?")
-    ) {
-      try {
-        await axiosRes.delete(`/recommendations/${id}`);
-        history.goBack();
-      } catch (err) {
-        console.log(err);
+    if (is_owner) {
+      if (
+        window.confirm("Are you sure you want to remove this recommendation?")
+      ) {
+        try {
+          await axiosRes.delete(`/recommendations/${id}`);
+          history.goBack();
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
   };
+
   const handleBoost = async () => {
     try {
       const { data } = await axiosRes.post("/boosts/", {
@@ -85,6 +92,7 @@ const Recommendation = (props) => {
       console.log(err);
     }
   };
+
   const handleUnBoost = async () => {
     try {
       await axiosRes.delete(`/boosts/${boost_id}`);
@@ -131,132 +139,164 @@ const Recommendation = (props) => {
   const handleFeature = () => {
     changeFeature(true);
   };
+
   const handleUnFeature = () => {
     changeFeature(false);
   };
-  return (
-    <Card>
-      <Card.Header>
-        <span>
-          <Link to={`/profiles/${profile}`}>
-            <Avatar
-              src={profile_image}
-              text={profile_name}
-              title={profile_title}
-              height={60}
-            />
-          </Link>
-        </span>
-        <span className={appStyles.Right}>
-          <span className={`text-muted ${appStyles.Date}`}>{date}</span>
-          <br />
-          {is_owner && (
-            <>
-              <span
-                onClick={handleEdit}
-                className={`fa-solid fa-pen-to-square ${btnStyles.Option}`}
-              ></span>
-              <span
-                onClick={handleDelete}
-                className={`fa-solid fa-trash ${btnStyles.Option}`}
-              ></span>
-            </>
-          )}
-        </span>
-      </Card.Header>
-      <Card.Body>
-        <Link to={`/recommendations/${id}`}>
-          <div className={appStyles.Content}>{content}</div>
+
+  const recommendationReadonly = (
+    <div>
+      <Link to={`/recommendations/${id}`}>
+        <div className={appStyles.Content}>{content}</div>
+      </Link>
+      <div>
+        <Link to={`/profiles/${receiver}`}>
+          <Avatar
+            src={receiver_image}
+            text={receiver_name}
+            title={receiver_title}
+            height={60}
+          />
         </Link>
-        <div>
-          <Link to={`/profiles/${receiver}`}>
-            <Avatar
-              src={receiver_image}
-              text={receiver_name}
-              title={receiver_title}
-              height={60}
-            />
-          </Link>
-        </div>
+      </div>
 
-        <span className={appStyles.RecommendationNote}>
-          {recommendationNote}
+      <span className={appStyles.RecommendationNote}>{recommendationNote}</span>
+
+      {boosts_count === 1 ? (
+        <span>
+          <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>1 Boost
         </span>
+      ) : (
+        boosts_count > 1 && (
+          <span>
+            <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>
+            {boosts_count} Boosts
+          </span>
+        )
+      )}
+      {is_featured && (
+        <span>
+          <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>
+        </span>
+      )}
+    </div>
+  );
 
-        {boosts_count === 1 ? (
+  const recommendationEditable = (
+    <div>
+      <RecommendationCreateEditForm
+        {...props}
+        edit={true}
+        setEditMode={setEditMode}
+        setRecommendations={setRecommendations}
+      />
+    </div>
+  );
+
+  return (
+    <>
+      <Card>
+        <Card.Header>
           <span>
-            <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>1 Boost
+            <Link to={`/profiles/${profile}`}>
+              <Avatar
+                src={profile_image}
+                text={profile_name}
+                title={profile_title}
+                height={60}
+              />
+            </Link>
           </span>
-        ) : (
-          boosts_count > 1 && (
-            <span>
-              <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>
-              {boosts_count} Boosts
-            </span>
-          )
-        )}
-        {is_featured && (
-          <span>
-            <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>
+          <span className={appStyles.Right}>
+            <span className={`text-muted ${appStyles.Date}`}>{date}</span>
+            <br />
+            {is_owner &&
+              (!editMode ? (
+                <>
+                  <button
+                    onClick={handleEdit}
+                    className={`fa-solid fa-pen-to-square ${btnStyles.Option}`}
+                  ></button>
+                  <button
+                    onClick={handleDelete}
+                    className={`fa-solid fa-trash ${btnStyles.Option}`}
+                  ></button>
+                </>
+              ) : (
+                <>
+                  <button
+                    form="recommendationCreateEditForm"
+                    type="submit"
+                    className={`fa-solid fa-floppy-disk ${btnStyles.Option}`}
+                  ></button>
+                  <button
+                    onClick={handleDelete}
+                    className={`fa-solid fa-trash ${btnStyles.Option}`}
+                  ></button>
+                </>
+              ))}
           </span>
-        )}
-      </Card.Body>
-      <Card.Footer>
-        <div className={appStyles.ActionArea}>
-          {boost_id ? (
-            <span
-              onClick={handleUnBoost}
-              className={`fa-solid fa-rocket ${btnStyles.Clicked}`}
-            ></span>
-          ) : currentUser ? (
-            boosts_count === 0 ? (
+        </Card.Header>
+        <Card.Body>
+          {!editMode ? recommendationReadonly : recommendationEditable}
+        </Card.Body>
+        <Card.Footer>
+          <div className={appStyles.ActionArea}>
+            {boost_id ? (
+              <span
+                onClick={handleUnBoost}
+                className={`fa-solid fa-rocket ${btnStyles.Clicked}`}
+              ></span>
+            ) : currentUser ? (
+              boosts_count === 0 ? (
+                <OverlayTrigger
+                  placement="top"
+                  overlay={
+                    <Tooltip>
+                      Be the first one to boost this recommendation
+                    </Tooltip>
+                  }
+                >
+                  <button
+                    onClick={handleBoost}
+                    className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
+                  ></button>
+                </OverlayTrigger>
+              ) : (
+                <button
+                  onClick={handleBoost}
+                  className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
+                ></button>
+              )
+            ) : (
               <OverlayTrigger
                 placement="top"
                 overlay={
-                  <Tooltip>
-                    Be the first one to boost this recommendation
-                  </Tooltip>
+                  <Tooltip>Login to be able to boost recommendation</Tooltip>
                 }
               >
-                <span
-                  onClick={handleBoost}
+                <button
                   className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-                ></span>
+                ></button>
               </OverlayTrigger>
+            )}
+            {isReceiver && is_featured ? (
+              <button
+                onClick={handleUnFeature}
+                className={`fa-solid fa-star ${btnStyles.Clicked}`}
+              ></button>
+            ) : isReceiver && !is_featured ? (
+              <button
+                onClick={handleFeature}
+                className={`fa-solid fa-star ${btnStyles.NotClicked}`}
+              ></button>
             ) : (
-              <span
-                onClick={handleBoost}
-                className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-              ></span>
-            )
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip>Login to be able to boost recommendation</Tooltip>
-              }
-            >
-              <span
-                className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-              ></span>
-            </OverlayTrigger>
-          )}
-          {isReceiver && is_featured ? (
-            <span
-              onClick={handleUnFeature}
-              className={`fa-solid fa-star ${btnStyles.Clicked}`}
-            ></span>
-          ) : isReceiver && !is_featured ? (
-            <span
-              onClick={handleFeature}
-              className={`fa-solid fa-star ${btnStyles.NotClicked}`}
-            ></span>
-          ) : (
-            <></>
-          )}
-        </div>
-      </Card.Footer>
-    </Card>
+              <></>
+            )}
+          </div>
+        </Card.Footer>
+      </Card>
+    </>
   );
 };
 

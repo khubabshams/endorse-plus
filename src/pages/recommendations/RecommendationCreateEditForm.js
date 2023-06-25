@@ -7,9 +7,8 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-const RecommendationCreateForm = (props) => {
+const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();
-  const { receiver_id } = useParams();
 
   const [recommendationData, setRecommendationData] = useState({
     receiver: props.receiver ? props.receiver : "",
@@ -19,11 +18,18 @@ const RecommendationCreateForm = (props) => {
       : "",
     relation: props.relation ? props.relation : "",
   });
+
   const [relations, setRelations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [receiverData, setReceiverData] = useState({});
 
-  const { content, related_experience, relation } = recommendationData;
+  const { receiver_id } = useParams();
+  const {
+    receiver = receiver_id,
+    content,
+    related_experience,
+    relation,
+  } = recommendationData;
 
   const [errors, setErrors] = useState({});
   const history = useHistory();
@@ -32,11 +38,10 @@ const RecommendationCreateForm = (props) => {
     const fetchRecommendationData = async () => {
       try {
         let company;
-
         const [{ data: relationsData }, { data: receiverData }] =
           await Promise.all([
             axiosReq.get(`/relationships/`),
-            axiosReq.get(`/profiles/${receiver_id}`),
+            axiosReq.get(`/profiles/${receiver ? receiver : receiver_id}`),
           ]);
 
         receiverData?.experiences.map(async (experience_id) => {
@@ -62,7 +67,7 @@ const RecommendationCreateForm = (props) => {
     };
 
     fetchRecommendationData();
-  }, [receiver_id]);
+  }, [receiver, receiver_id]);
 
   const handleChange = (event) => {
     setRecommendationData({
@@ -79,17 +84,33 @@ const RecommendationCreateForm = (props) => {
       related_experience > 0 ? Number(related_experience) : null;
 
     formData.append("profile", currentUser?.profile_id);
-    formData.append("receiver", receiver_id);
+    formData.append("receiver", receiver ? receiver : receiver_id);
     formData.append("content", content);
     formData.append("related_experience", experience_id);
     formData.append("relation", relation);
 
     try {
-      const { data: recommendation } = await axiosReq.post(
-        "/recommendations/",
-        formData
-      );
-      history.push(`/recommendations/${recommendation.id}`);
+      const { data: recommendation } = !props.edit
+        ? await axiosReq.post("/recommendations/", formData)
+        : await axiosReq.put(`/recommendations/${props.id}`, formData);
+      if (props.edit) {
+        props.setRecommendations((prevRecommendations) => ({
+          ...prevRecommendations,
+          results: prevRecommendations.results.map((recommendation) => {
+            return recommendation.id === props.id
+              ? {
+                  ...recommendation,
+                  content: content,
+                  related_experience: experience_id,
+                  relation: relation,
+                }
+              : recommendation;
+          }),
+        }));
+        props.setEditMode(false);
+      } else {
+        history.push(`/recommendations/${recommendation.id}`);
+      }
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -100,7 +121,11 @@ const RecommendationCreateForm = (props) => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit} className={styles.Form}>
+      <Form
+        onSubmit={handleSubmit}
+        className={styles.Form}
+        id="recommendationCreateEditForm"
+      >
         <Form.Group controlId="receiver">
           <Form.Label>Recommendee</Form.Label>
           <Form.Control
@@ -174,10 +199,14 @@ const RecommendationCreateForm = (props) => {
             {message}
           </Alert>
         ))}
+        {props?.edit ? (
+          <></>
+        ) : (
+          <Button className={`${btnStyles.Button}`} type="submit">
+            Recommend
+          </Button>
+        )}
 
-        <Button className={`${btnStyles.Button}`} type="submit">
-          Recommend
-        </Button>
         {errors.non_field_errors?.map((message, idx) => (
           <Alert
             className={`${appStyles.Alert} mt-3`}
@@ -199,4 +228,4 @@ const RecommendationCreateForm = (props) => {
   );
 };
 
-export default RecommendationCreateForm;
+export default RecommendationCreateEditForm;

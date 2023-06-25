@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import RecommendationCreateForm from "./pages/recommendations/RecommendationCreateForm";
+import RecommendationCreateEditForm from "./pages/recommendations/RecommendationCreateEditForm";
 import RecommendationPage from "./pages/recommendations/RecommendationPage";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Route
             exact
             path="/recommendations/create/:receiver_id"
-            render={() => <RecommendationCreateForm />}
+            render={() => <RecommendationCreateEditForm />}
           />
           <Route
             exact
