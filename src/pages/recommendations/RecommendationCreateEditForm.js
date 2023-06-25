@@ -84,10 +84,10 @@ const RecommendationCreateEditForm = (props) => {
     formData.append("relation", relation);
 
     try {
-      const { data: recommendation } = !props.edit
+      const { data: recommendation } = !props?.edit
         ? await axiosReq.post("/recommendations/", formData)
         : await axiosReq.put(`/recommendations/${props.id}`, formData);
-      if (props.edit) {
+      if (props?.edit) {
         props.updateRecommendation({
           content: content,
           related_experience: experience_id,
@@ -133,7 +133,6 @@ const RecommendationCreateEditForm = (props) => {
             name="related_experience"
             value={related_experience}
             onChange={handleChange}
-            required
           >
             <option></option>
             {experiences.map((experience) => (

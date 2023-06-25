@@ -49,7 +49,9 @@ const Recommendation = (props) => {
     relation_name ? `being his/ her ${relation_name} ` : `having a role`
   } at ${company_name}.`;
 
-  const handleEdit = () => {
+  const handleEdit = (event) => {
+    event.preventDefault();
+    
     if (is_owner) {
       setEditMode(true);
     }
@@ -170,7 +172,7 @@ const Recommendation = (props) => {
     <div>
       <RecommendationCreateEditForm
         {...props}
-        edit={true}
+        edit={editMode}
         setEditMode={setEditMode}
         updateRecommendation={updateRecommendation}
       />
