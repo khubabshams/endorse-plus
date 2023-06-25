@@ -48,8 +48,10 @@ const Recommendation = (props) => {
 
   const handleBoost = async () => {
     try {
-      console.log("-----> ", id);
-      const { data } = await axiosRes.post("/boosts/", { recommendation: id });
+      const { data } = await axiosRes.post("/boosts/", {
+        recommendation: id,
+        profile: currentUser?.profile_id,
+      });
       setRecommendations((prevRecommendations) => ({
         ...prevRecommendations,
         results: prevRecommendations.results.map((recommendation) => {
@@ -66,14 +68,55 @@ const Recommendation = (props) => {
       console.log(err);
     }
   };
-  const handleUnBoost = () => {
-    console.log("handleUnBoost");
+  const handleUnBoost = async () => {
+    try {
+      await axiosRes.delete(`/boosts/${boost_id}`);
+      setRecommendations((prevRecommendations) => ({
+        ...prevRecommendations,
+        results: prevRecommendations.results.map((recommendation) => {
+          return recommendation.id === id
+            ? {
+                ...recommendation,
+                boosts_count: recommendation.boosts_count - 1,
+                boost_id: null,
+              }
+            : recommendation;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const changeFeature = async (featured) => {
+    if (currentUser?.profile_id === receiver) {
+      try {
+        await axiosRes.put(`/recommendations/feature/${id}`, {
+          is_featured: featured,
+        });
+        setRecommendations((prevRecommendations) => ({
+          ...prevRecommendations,
+          results: prevRecommendations.results.map((recommendation) => {
+            return recommendation.id === id
+              ? {
+                  ...recommendation,
+                  is_featured: featured,
+                }
+              : recommendation;
+          }),
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const handleFeature = () => {
+    changeFeature(true);
     console.log("handleFeature");
   };
   const handleUnFeature = () => {
+    changeFeature(false);
     console.log("handleUnFeature");
   };
   return (
@@ -139,17 +182,17 @@ const Recommendation = (props) => {
         )}
         {is_featured && (
           <span>
-            <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>Featured
+            <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>
           </span>
         )}
       </Card.Body>
       <Card.Footer>
         <div className={appStyles.ActionArea}>
           {boost_id ? (
-            <span onClick={handleUnBoost} className={btnStyles.Clicked}>
-              <i className="fa-solid fa-rocket"></i>
-              Un Boost
-            </span>
+            <span
+              onClick={handleUnBoost}
+              className={`fa-solid fa-rocket ${btnStyles.Clicked}`}
+            ></span>
           ) : currentUser ? (
             boosts_count === 0 ? (
               <OverlayTrigger
@@ -160,16 +203,16 @@ const Recommendation = (props) => {
                   </Tooltip>
                 }
               >
-                <span onClick={handleBoost} className={btnStyles.NotClicked}>
-                  <i className="fa-solid fa-rocket"></i>
-                  Boost
-                </span>
+                <span
+                  onClick={handleBoost}
+                  className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
+                ></span>
               </OverlayTrigger>
             ) : (
-              <span onClick={handleBoost} className={btnStyles.NotClicked}>
-                <i className="fa-solid fa-rocket"></i>
-                Boost
-              </span>
+              <span
+                onClick={handleBoost}
+                className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
+              ></span>
             )
           ) : (
             <OverlayTrigger
@@ -178,22 +221,21 @@ const Recommendation = (props) => {
                 <Tooltip>Login to be able to boost recommendation</Tooltip>
               }
             >
-              <span className={btnStyles.NotClicked}>
-                <i className="fa-solid fa-rocket"></i>
-                Boost
-              </span>
+              <span
+                className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
+              ></span>
             </OverlayTrigger>
           )}
           {isReceiver && is_featured ? (
-            <span onClick={handleUnFeature} className={btnStyles.Clicked}>
-              <i className="fa-solid fa-star"></i>
-              Un Feature
-            </span>
+            <span
+              onClick={handleUnFeature}
+              className={`fa-solid fa-star ${btnStyles.Clicked}`}
+            ></span>
           ) : isReceiver && !is_featured ? (
-            <span onClick={handleFeature} className={btnStyles.NotClicked}>
-              <i className="fa-solid fa-star"></i>
-              Feature
-            </span>
+            <span
+              onClick={handleFeature}
+              className={`fa-solid fa-star ${btnStyles.NotClicked}`}
+            ></span>
           ) : (
             <></>
           )}

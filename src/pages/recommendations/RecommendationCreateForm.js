@@ -78,7 +78,7 @@ const RecommendationCreateForm = (props) => {
     const experience_id =
       related_experience > 0 ? Number(related_experience) : null;
 
-    // formData.append("profile", currentUser?.profile_id);
+    formData.append("profile", currentUser?.profile_id);
     formData.append("receiver", receiver_id);
     formData.append("content", content);
     formData.append("related_experience", experience_id);
