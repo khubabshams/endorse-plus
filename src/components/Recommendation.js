@@ -188,7 +188,6 @@ const Recommendation = (props) => {
         {...props}
         edit={true}
         setEditMode={setEditMode}
-        setRecommendations={setRecommendations}
       />
     </div>
   );
