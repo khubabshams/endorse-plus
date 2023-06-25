@@ -3,8 +3,10 @@ import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../App.module.css";
+import btnStyles from "../styles/Button.module.css";
+import styles from "../styles/Recommendation.module.css";
+import { axiosRes } from "../api/axiosDefaults";
 
 const Recommendation = (props) => {
   const currentUser = useCurrentUser();
@@ -44,8 +46,25 @@ const Recommendation = (props) => {
     relation_name ? `being his/ her ${relation_name} ` : `having a role`
   } at ${company_name}.`;
 
-  const handleBoost = () => {
-    console.log("handleBoost");
+  const handleBoost = async () => {
+    try {
+      console.log("-----> ", id);
+      const { data } = await axiosRes.post("/boosts/", { recommendation: id });
+      setRecommendations((prevRecommendations) => ({
+        ...prevRecommendations,
+        results: prevRecommendations.results.map((recommendation) => {
+          return recommendation.id === id
+            ? {
+                ...recommendation,
+                boosts_count: recommendation.boosts_count + 1,
+                boost_id: data.id,
+              }
+            : recommendation;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
   };
   const handleUnBoost = () => {
     console.log("handleUnBoost");
@@ -106,27 +125,52 @@ const Recommendation = (props) => {
           {recommendationNote}
         </span>
 
-        {boosts_count && (
-          <span className="fa-solid fa-rocket">{boosts_count}</span>
+        {boosts_count === 1 ? (
+          <span>
+            <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>1 Boost
+          </span>
+        ) : (
+          boosts_count > 1 && (
+            <span>
+              <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>
+              {boosts_count} Boosts
+            </span>
+          )
         )}
-        {is_featured && <span className="fa-solid fa-star">Featured</span>}
+        {is_featured && (
+          <span>
+            <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>Featured
+          </span>
+        )}
       </Card.Body>
       <Card.Footer>
         <div className={appStyles.ActionArea}>
           {boost_id ? (
-            <span
-              onClick={handleUnBoost}
-              className={`fa-solid fa-rocket ${btnStyles.Clicked}`}
-            >
+            <span onClick={handleUnBoost} className={btnStyles.Clicked}>
+              <i className="fa-solid fa-rocket"></i>
               Un Boost
             </span>
           ) : currentUser ? (
-            <span
-              onClick={handleBoost}
-              className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-            >
-              Boost
-            </span>
+            boosts_count === 0 ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip>
+                    Be the first one to boost this recommendation
+                  </Tooltip>
+                }
+              >
+                <span onClick={handleBoost} className={btnStyles.NotClicked}>
+                  <i className="fa-solid fa-rocket"></i>
+                  Boost
+                </span>
+              </OverlayTrigger>
+            ) : (
+              <span onClick={handleBoost} className={btnStyles.NotClicked}>
+                <i className="fa-solid fa-rocket"></i>
+                Boost
+              </span>
+            )
           ) : (
             <OverlayTrigger
               placement="top"
@@ -134,23 +178,20 @@ const Recommendation = (props) => {
                 <Tooltip>Login to be able to boost recommendation</Tooltip>
               }
             >
-              <i className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}>
+              <span className={btnStyles.NotClicked}>
+                <i className="fa-solid fa-rocket"></i>
                 Boost
-              </i>
+              </span>
             </OverlayTrigger>
           )}
           {isReceiver && is_featured ? (
-            <span
-              onClick={handleUnFeature}
-              className={`fa-solid fa-star ${btnStyles.Clicked}`}
-            >
+            <span onClick={handleUnFeature} className={btnStyles.Clicked}>
+              <i className="fa-solid fa-star"></i>
               Un Feature
             </span>
           ) : isReceiver && !is_featured ? (
-            <span
-              onClick={handleFeature}
-              className={`fa-solid fa-star ${btnStyles.NotClicked}`}
-            >
+            <span onClick={handleFeature} className={btnStyles.NotClicked}>
+              <i className="fa-solid fa-star"></i>
               Feature
             </span>
           ) : (
