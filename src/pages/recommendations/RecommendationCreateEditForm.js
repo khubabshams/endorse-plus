@@ -68,19 +68,47 @@ const RecommendationCreateEditForm = (props) => {
       ...recommendationData,
       [event.target.name]: event.target.value,
     });
+    if (["related_experience", "relation"].includes(event.target.name)) {
+      const name = event.target.childNodes[event.target.selectedIndex].getAttribute("name");
+      const updatedValue =
+        event.target.name === "related_experience"
+          ? { company_name: name }
+          : { relation_name: name };
+      props.updateRecommendation(updatedValue);
+    }
+  };
+
+  const handleExperienceChange = (event) => {
+    const index = event.target.selectedIndex;
+    const optionElement = event.target.childNodes[index];
+    const company = optionElement.getAttribute("name");
+    setRecommendationData({
+      ...recommendationData,
+      related_experience: event.target.value,
+    });
+    props.updateRecommendation({ company_name: company });
+  };
+
+  const handleRelationChange = (event) => {
+    const index = event.target.selectedIndex;
+    const optionElement = event.target.childNodes[index];
+    const relation = optionElement.getAttribute("name");
+    console.log("--------->>relation ", relation);
+    setRecommendationData({
+      ...recommendationData,
+      relation: event.target.value,
+    });
+    props.updateRecommendation({ relation_name: relation });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
-    const experience_id =
-      related_experience > 0 ? Number(related_experience) : null;
-
     formData.append("profile", Number(currentUser?.profile_id));
     formData.append("receiver", receiver ? receiver : receiver_id);
     formData.append("content", content);
-    formData.append("related_experience", experience_id);
+    formData.append("related_experience", related_experience);
     formData.append("relation", relation);
 
     try {
@@ -90,7 +118,7 @@ const RecommendationCreateEditForm = (props) => {
       if (props?.edit) {
         props.updateRecommendation({
           content: content,
-          related_experience: experience_id,
+          related_experience: related_experience,
           relation: relation,
         });
         props.setEditMode(false);
@@ -133,10 +161,15 @@ const RecommendationCreateEditForm = (props) => {
             name="related_experience"
             value={related_experience}
             onChange={handleChange}
+            required
           >
             <option></option>
             {experiences.map((experience) => (
-              <option value={experience.id} key={experience.id}>
+              <option
+                value={experience.id}
+                key={experience.id}
+                name={experience.company.name}
+              >
                 {experience.title} at {experience.company.name}
               </option>
             ))}
@@ -157,7 +190,7 @@ const RecommendationCreateEditForm = (props) => {
           >
             <option></option>
             {relations.map((rel) => (
-              <option value={rel.id} key={rel.id}>
+              <option value={rel.id} key={rel.id} name={rel.name}>
                 {rel.name}
               </option>
             ))}
