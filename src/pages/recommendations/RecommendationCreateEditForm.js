@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import styles from "../../styles/RecommendationCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import RecommendationForm from "./RecommendationForm";
 
 const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();
@@ -16,7 +13,7 @@ const RecommendationCreateEditForm = (props) => {
     related_experience: props?.related_experience,
     relation: props?.relation,
   });
-
+  
   const [relations, setRelations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [receiverData, setReceiverData] = useState({});
@@ -69,12 +66,28 @@ const RecommendationCreateEditForm = (props) => {
       [event.target.name]: event.target.value,
     });
     if (["related_experience", "relation"].includes(event.target.name)) {
-      const name = event.target.childNodes[event.target.selectedIndex].getAttribute("name");
+      const name =
+        event.target.childNodes[event.target.selectedIndex].getAttribute(
+          "name"
+        );
       const updatedValue =
         event.target.name === "related_experience"
           ? { company_name: name }
           : { relation_name: name };
-      props.updateRecommendation(updatedValue);
+      props.updateRecommendation && props.updateRecommendation(updatedValue);
+    }
+  };
+
+  const onSubmitSucces = (recommendation) => {
+    if (props?.edit) {
+      props.updateRecommendation({
+        content: content,
+        related_experience: related_experience,
+        relation: relation,
+      });
+      props.setEditMode(false);
+    } else {
+      history.push(`/recommendations/${recommendation.id}`);
     }
   };
 
@@ -86,22 +99,13 @@ const RecommendationCreateEditForm = (props) => {
     formData.append("receiver", receiver ? receiver : receiver_id);
     formData.append("content", content);
     formData.append("related_experience", related_experience);
-    formData.append("relation", relation);
+    relation && formData.append("relation", relation);
 
     try {
       const { data: recommendation } = !props?.edit
         ? await axiosReq.post("/recommendations/", formData)
         : await axiosReq.put(`/recommendations/${props.id}`, formData);
-      if (props?.edit) {
-        props.updateRecommendation({
-          content: content,
-          related_experience: related_experience,
-          relation: relation,
-        });
-        props.setEditMode(false);
-      } else {
-        history.push(`/recommendations/${recommendation.id}`);
-      }
+      onSubmitSucces(recommendation);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -111,116 +115,22 @@ const RecommendationCreateEditForm = (props) => {
   };
 
   return (
-    <>
-      <Form
-        onSubmit={handleSubmit}
-        className={styles.Form}
-        id="recommendationCreateEditForm"
-      >
-        <Form.Group controlId="receiver">
-          <Form.Label>Recommendee</Form.Label>
-          <Form.Control
-            type="text"
-            name="receiver_name"
-            defaultValue={receiverData.name}
-            disabled
-          />
-        </Form.Group>
-        {errors.receiver?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        <Form.Group controlId="related_experience">
-          <Form.Label>Recommended experience</Form.Label>
-          <Form.Control
-            as="select"
-            name="related_experience"
-            value={related_experience}
-            onChange={handleChange}
-            required
-          >
-            <option></option>
-            {experiences.map((experience) => (
-              <option
-                value={experience.id}
-                key={experience.id}
-                name={experience.company.name}
-              >
-                {experience.title} at {experience.company.name}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        {errors.related_experience?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        <Form.Group controlId="relation">
-          <Form.Label>Your position related to the recommendee</Form.Label>
-          <Form.Control
-            as="select"
-            name="relation"
-            value={relation}
-            onChange={handleChange}
-          >
-            <option></option>
-            {relations.map((rel) => (
-              <option value={rel.id} key={rel.id} name={rel.name}>
-                {rel.name}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        {errors.relation?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        <Form.Group controlId="content">
-          <Form.Label>Content</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={6}
-            name="content"
-            value={content}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        {errors.content?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        {props?.edit ? (
-          <></>
-        ) : (
-          <Button className={`${btnStyles.Button}`} type="submit">
-            Recommend
-          </Button>
-        )}
-
-        {errors.non_field_errors?.map((message, idx) => (
-          <Alert
-            className={`${appStyles.Alert} mt-3`}
-            variant="warning"
-            key={idx}
-          >
-            {message}
-          </Alert>
-        ))}
-        {errors.detail ? (
-          <Alert className={`${appStyles.Alert} mt-3`} variant="warning">
-            {errors.detail}
-          </Alert>
-        ) : (
-          <></>
-        )}
-      </Form>
-    </>
+    <RecommendationForm
+      {...{
+        handleSubmit,
+        receiverName: receiverData.name,
+        errors,
+        related_experience,
+        handleChange,
+        experiences,
+        relation,
+        relations,
+        content,
+        edit: props?.edit,
+      }}
+    />
   );
 };
 
 export default RecommendationCreateEditForm;
+
