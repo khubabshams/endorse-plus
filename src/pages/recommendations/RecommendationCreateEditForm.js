@@ -78,29 +78,6 @@ const RecommendationCreateEditForm = (props) => {
     }
   };
 
-  const handleExperienceChange = (event) => {
-    const index = event.target.selectedIndex;
-    const optionElement = event.target.childNodes[index];
-    const company = optionElement.getAttribute("name");
-    setRecommendationData({
-      ...recommendationData,
-      related_experience: event.target.value,
-    });
-    props.updateRecommendation({ company_name: company });
-  };
-
-  const handleRelationChange = (event) => {
-    const index = event.target.selectedIndex;
-    const optionElement = event.target.childNodes[index];
-    const relation = optionElement.getAttribute("name");
-    console.log("--------->>relation ", relation);
-    setRecommendationData({
-      ...recommendationData,
-      relation: event.target.value,
-    });
-    props.updateRecommendation({ relation_name: relation });
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -134,7 +111,7 @@ const RecommendationCreateEditForm = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Form
         onSubmit={handleSubmit}
         className={styles.Form}
@@ -242,7 +219,7 @@ const RecommendationCreateEditForm = (props) => {
           <></>
         )}
       </Form>
-    </div>
+    </>
   );
 };
 

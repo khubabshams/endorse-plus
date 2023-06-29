@@ -39,7 +39,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
+    <>
       <Form onSubmit={handleSubmit} className={styles.Form}>
         <Form.Group controlId="username">
           <Form.Label className="d-none">Username</Form.Label>
@@ -105,7 +105,7 @@ const SignUpForm = () => {
           Already have an account? <span>click here to sign in!</span>
         </Link>
       </Form>
-    </div>
+    </>
   );
 };
 

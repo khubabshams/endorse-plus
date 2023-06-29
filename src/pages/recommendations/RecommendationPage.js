@@ -23,12 +23,12 @@ const RecommendationPage = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
       <Recommendation
         {...recommendation.results[0]}
         setRecommendations={setRecommendations}
       />
-    </div>
+    </>
   );
 };
 
