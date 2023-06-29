@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import CustomAlert from "../../components/CustomAlert";
 
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -52,11 +53,9 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        {errors.username?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
+        
+        <CustomAlert error={errors.username} />
+        
         <Form.Group controlId="password1">
           <Form.Label className="d-none">Password</Form.Label>
           <Form.Control
@@ -68,11 +67,8 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        {errors.password1?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
+        <CustomAlert error={errors.password1} />
+
         <Form.Group controlId="password2">
           <Form.Label className="d-none">Confirm Password</Form.Label>
           <Form.Control
@@ -84,23 +80,13 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        {errors.password2?.map((message, idx) => (
-          <Alert className={appStyles.Alert} variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
+        <CustomAlert error={errors.password2} />
+
         <Button className={`${btnStyles.Button} ${btnStyles.Lg}`} type="submit">
           Sign Up
         </Button>
-        {errors.non_field_errors?.map((message, idx) => (
-          <Alert
-            className={`${appStyles.Alert} mt-3`}
-            variant="warning"
-            key={idx}
-          >
-            {message}
-          </Alert>
-        ))}
+        <CustomAlert error={errors.non_field_errors} />
+        
         <Link to="/signin">
           Already have an account? <span>click here to sign in!</span>
         </Link>
