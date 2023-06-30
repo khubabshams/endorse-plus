@@ -1,0 +1,8 @@
+.Outer {
+  width: 100%;
+  text-align: center;
+}
+
+.Inner {
+  display: inline-block;
+}
