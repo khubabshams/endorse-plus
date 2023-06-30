@@ -5,14 +5,14 @@
   border-radius: 0%;
 }
 
-.Lg {
-  width: 100%;
-}
-
 .Button:hover {
   border: 1px solid black;
   background-color: white;
   color: black;
+}
+
+.Lg {
+  width: 100%;
 }
 
 .Option {
@@ -22,15 +22,9 @@
   color: black;
 }
 
-.Clicked {
-  color: black;
-}
-.Clicked:hover {
-  color: c8c8ca8c;
-}
-.NotClicked {
+.Option {
   color: #c8c8ca8c;
 }
-.NotClicked:hover {
+.Option:hover {
   color: black;
 }
