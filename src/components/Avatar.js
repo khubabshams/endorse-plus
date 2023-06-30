@@ -1,9 +1,16 @@
 import React from "react";
 import styles from "../styles/Avatar.module.css";
 
-const Avatar = ({ src, height = 40, navbar = false, text, title = false }) => {
+const Avatar = ({
+  src,
+  height = 40,
+  navbar = false,
+  text = "",
+  time = false,
+  title = false,
+}) => {
   return (
-    <span className={styles.Profile}>
+    <div className={styles.Profile}>
       <img
         className={styles.Avatar}
         src={src}
@@ -12,11 +19,17 @@ const Avatar = ({ src, height = 40, navbar = false, text, title = false }) => {
         alt="avatar"
       />
       {navbar ? <br /> : null}
-      <span className={styles.Name}>{text}</span>
-      {title ? (
-        <span className={`text-muted ${styles.Title}`}>{title}</span>
-      ) : null}
-    </span>
+      <span className={styles.Name}>
+        {text}
+        {title ? (
+          <span className={`text-muted ${styles.Text}`}>{title}</span>
+        ) : null}
+        {time ? (
+          <span className={`text-muted ${styles.Text}`}>{time}</span>
+        ) : null}
+
+      </span>
+    </div>
   );
 };
 
