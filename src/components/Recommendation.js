@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
@@ -49,7 +49,7 @@ const Recommendation = (props) => {
     profile_name &&
     `${profile_name} recommending ${receiver_name} based on ${
       relation_name ? `being his/ her ${relation_name} ` : `having a role`
-    } at ${company_name}.`;
+    } at ${company_name}`;
 
   const updateRecommendation = (updatedData) => {
     setRecommendations((prevRecommendations) => ({
@@ -134,158 +134,154 @@ const Recommendation = (props) => {
   };
 
   const recommendationReadonly = (
-    <div>
-      <Link to={`/recommendations/${id}`}>
-        <div className={appStyles.Content}>{content}</div>
-      </Link>
-      <div>
-        <Link to={`/profiles/${receiver}`}>
-          <Avatar
-            src={receiver_image}
-            text={receiver_name}
-            title={receiver_title}
-            height={60}
-          />
-        </Link>
-      </div>
+    <Link to={`/recommendations/${id}`}>
+      <Card.Text>
+        <p className={appStyles.Content}>{content}</p>
 
-      <span className={appStyles.RecommendationNote}>{recommendationNote}</span>
-
-      {boosts_count === 1 ? (
-        <span>
-          <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>1 Boost
+        <span className="mt-2">
+          <Link to={`/profiles/${receiver}`}>
+            <Avatar
+              src={receiver_image}
+              text={receiver_name}
+              title={receiver_title}
+              height={40}
+            />
+          </Link>
         </span>
-      ) : (
-        boosts_count > 1 && (
-          <span>
-            <i className={`fa-solid fa-rocket ${btnStyles.Clicked}`}></i>
-            {boosts_count} Boosts
-          </span>
-        )
-      )}
-      {is_featured && (
-        <span>
-          <i className={`fa-solid fa-star ${btnStyles.Clicked}`}></i>
-        </span>
-      )}
-    </div>
-  );
 
-  const recommendationEditable = (
-    <div>
-      <RecommendationCreateEditForm
-        {...props}
-        edit={editMode}
-        setEditMode={setEditMode}
-        updateRecommendation={updateRecommendation}
-      />
-    </div>
+        <p className={`text-muted mt-2 ${styles.RecommendationNote}`}>
+          {recommendationNote}
+        </p>
+      </Card.Text>
+    </Link>
   );
 
   return (
-    <>
-      <Card>
-        <Card.Header>
-          <span>
-            <Link to={`/profiles/${profile}`}>
-              <Avatar
-                src={profile_image}
-                text={profile_name}
-                title={profile_title}
-                height={60}
-              />
-            </Link>
-          </span>
-          <span className={appStyles.Right}>
-            <span className={`text-muted ${appStyles.Date}`}>{date}</span>
-            <br />
-            {is_owner &&
-              (!editMode ? (
-                <>
-                  <button
-                    onClick={handleEdit}
-                    className={`fa-solid fa-pen-to-square ${btnStyles.Option}`}
-                  ></button>
-                  <button
-                    onClick={handleDelete}
-                    className={`fa-solid fa-trash ${btnStyles.Option}`}
-                  ></button>
-                </>
-              ) : (
-                <>
-                  <button
-                    form="recommendationCreateEditForm"
-                    type="submit"
-                    className={`fa-solid fa-floppy-disk ${btnStyles.Option}`}
-                  ></button>
-                  <button
-                    onClick={handleDelete}
-                    className={`fa-solid fa-trash ${btnStyles.Option}`}
-                  ></button>
-                </>
-              ))}
-          </span>
-        </Card.Header>
-        <Card.Body>
-          {!editMode ? recommendationReadonly : recommendationEditable}
-        </Card.Body>
-        <Card.Footer>
-          <div className={appStyles.ActionArea}>
-            {boost_id ? (
-              <span
-                onClick={handleUnBoost}
-                className={`fa-solid fa-rocket ${btnStyles.Clicked}`}
-              ></span>
-            ) : currentUser ? (
-              boosts_count === 0 ? (
-                <OverlayTrigger
-                  placement="top"
-                  overlay={
-                    <Tooltip>
-                      Be the first one to boost this recommendation
-                    </Tooltip>
-                  }
-                >
-                  <button
-                    onClick={handleBoost}
-                    className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-                  ></button>
-                </OverlayTrigger>
-              ) : (
-                <button
-                  onClick={handleBoost}
-                  className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-                ></button>
-              )
+    <Card className="rounded-0 mt-2">
+      <div className={appStyles.CardHeader}>
+        <span>
+          <Link to={`/profiles/${profile}`}>
+            <Avatar
+              src={profile_image}
+              text={profile_name}
+              title={profile_title}
+              height={60}
+              time={date}
+            />
+          </Link>
+        </span>
+        <span>
+          {is_owner &&
+            (!editMode ? (
+              <span>
+                <Button
+                  onClick={handleEdit}
+                  className={`fa-solid fa-pen-to-square ${btnStyles.Button} ${btnStyles.Option}`}
+                ></Button>
+                <Button
+                  onClick={handleDelete}
+                  className={`fa-solid fa-trash ${btnStyles.Button} ${btnStyles.Option}`}
+                ></Button>
+              </span>
             ) : (
-              <OverlayTrigger
-                placement="top"
-                overlay={
-                  <Tooltip>Login to be able to boost recommendation</Tooltip>
-                }
-              >
-                <button
-                  className={`fa-solid fa-rocket ${btnStyles.NotClicked}`}
-                ></button>
-              </OverlayTrigger>
-            )}
-            {isReceiver && is_featured ? (
-              <button
-                onClick={handleUnFeature}
-                className={`fa-solid fa-star ${btnStyles.Clicked}`}
-              ></button>
-            ) : isReceiver && !is_featured ? (
-              <button
-                onClick={handleFeature}
-                className={`fa-solid fa-star ${btnStyles.NotClicked}`}
-              ></button>
-            ) : (
-              <></>
-            )}
-          </div>
-        </Card.Footer>
-      </Card>
-    </>
+              <>
+                <Button
+                  form="recommendationCreateEditForm"
+                  type="submit"
+                  className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
+                ></Button>
+                <Button
+                  onClick={handleDelete}
+                  className={`fa-solid fa-trash ${btnStyles.Button} ${btnStyles.Option}`}
+                ></Button>
+              </>
+            ))}
+        </span>
+      </div>
+      <hr />
+      <Card.Body>
+        {!editMode ? (
+          recommendationReadonly
+        ) : (
+          <RecommendationCreateEditForm
+            {...props}
+            edit={editMode}
+            setEditMode={setEditMode}
+            updateRecommendation={updateRecommendation}
+          />
+        )}
+      </Card.Body>
+      <span className={`text-muted ${appStyles.Info}`}>
+        {boosts_count === 1 ? (
+          <>
+            <i className={`fa-solid fa-rocket`}></i>1 Boost
+          </>
+        ) : (
+          <>
+            <i className={`fa-solid fa-rocket`}></i>
+            {boosts_count} Boosts
+          </>
+        )}
+        {is_featured && (
+          <>
+            <i className={`fa-solid fa-star`}></i> Featured
+          </>
+        )}
+      </span>
+      <hr />
+      <div className={appStyles.CardFooter}>
+        {boost_id ? (
+          <Button
+            onClick={handleUnBoost}
+            className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
+          ></Button>
+        ) : currentUser ? (
+          boosts_count === 0 ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>Be the first one to boost this recommendation</Tooltip>
+              }
+            >
+              <Button
+                onClick={handleBoost}
+                className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
+              ></Button>
+            </OverlayTrigger>
+          ) : (
+            <Button
+              onClick={handleBoost}
+              className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
+            ></Button>
+          )
+        ) : (
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip>Login to be able to boost recommendation</Tooltip>
+            }
+          >
+            <Button
+              disabled
+              className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
+            ></Button>
+          </OverlayTrigger>
+        )}
+        {isReceiver && is_featured ? (
+          <Button
+            onClick={handleUnFeature}
+            className={`fa-solid fa-star ${btnStyles.Button} ${btnStyles.Option}`}
+          ></Button>
+        ) : isReceiver && !is_featured ? (
+          <Button
+            onClick={handleFeature}
+            className={`fa-solid fa-star ${btnStyles.Button} ${btnStyles.Option}`}
+          ></Button>
+        ) : (
+          <></>
+        )}
+      </div>
+    </Card>
   );
 };
 
