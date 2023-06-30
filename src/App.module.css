@@ -1,6 +1,7 @@
 .App {
   font-family: "Lora", sans-serif;
   min-height: 100vh;
+  background-color: #c8c8ca8c;
 }
 
 .Main {
@@ -21,16 +22,29 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #c8c8ca8c;
+  color: inherit;
 }
 
-.Right {
-  float: right;
+.Content {
+  font-size: 120%;
 }
 
-.Date{
-    font-size: 70%;
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
-.ActionArea {
+
+.Info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  font-size: 80%;
+}
+
+.CardFooter {
   width: 100%;
+  display: flex;
+  padding: 5px;
 }
