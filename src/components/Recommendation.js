@@ -47,8 +47,8 @@ const Recommendation = (props) => {
       : created_at;
   const recommendationNote =
     profile_name &&
-    `${profile_name} recommending ${receiver_name} based on ${
-      relation_name ? `being his/ her ${relation_name} ` : `having a role`
+    `Recommended based on ${
+      relation_name ? `being his/ her ${relation_name} ` : ` role`
     } at ${company_name}`;
 
   const updateRecommendation = (updatedData) => {
@@ -138,20 +138,24 @@ const Recommendation = (props) => {
       <Card.Text>
         <p className={appStyles.Content}>{content}</p>
 
-        <span className="mt-2">
-          <Link to={`/profiles/${receiver}`}>
-            <Avatar
-              src={receiver_image}
-              text={receiver_name}
-              title={receiver_title}
-              height={40}
-            />
-          </Link>
-        </span>
-
-        <p className={`text-muted mt-2 ${styles.RecommendationNote}`}>
+        <OverlayTrigger
+          placement="bottom"
+          overlay={<Tooltip>{recommendationNote}</Tooltip>}
+        >
+          <span className="mt-2">
+            <Link to={`/profiles/${receiver}`}>
+              <Avatar
+                src={receiver_image}
+                text={receiver_name}
+                title={receiver_title}
+                height={40}
+              />
+            </Link>
+          </span>
+        </OverlayTrigger>
+        {/* <p className={`text-muted mt-2 ${styles.RecommendationNote}`}>
           {recommendationNote}
-        </p>
+        </p> */}
       </Card.Text>
     </Link>
   );
@@ -204,15 +208,15 @@ const Recommendation = (props) => {
       </div>
       <hr />
       <Card.Body>
-        {!editMode ? (
-          recommendationReadonly
-        ) : (
+        {editMode ? (
           <RecommendationCreateEditForm
             {...props}
             edit={editMode}
             setEditMode={setEditMode}
             updateRecommendation={updateRecommendation}
           />
+        ) : (
+          recommendationReadonly
         )}
       </Card.Body>
       <span className={`text-muted ${appStyles.Info}`}>

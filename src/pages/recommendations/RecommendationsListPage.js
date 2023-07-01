@@ -27,10 +27,10 @@ const RecommendationsListPage = ({ filter = "" }) => {
   }, [filter, pathname]);
 
   return (
-    <Row>
-      <Col xs={12} md={10}>
-        {hasLoaded ? (
-          <>
+    <>
+      {hasLoaded ? (
+        <Row>
+          <Col xs={12} md={10}>
             {recommendations.results.length ? (
               recommendations.results.map((recommendation) => (
                 <Recommendation
@@ -42,12 +42,12 @@ const RecommendationsListPage = ({ filter = "" }) => {
             ) : (
               <div>No Results Found</div>
             )}
-          </>
-        ) : (
-          <Loader />
-        )}
-      </Col>
-    </Row>
+          </Col>
+        </Row>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 

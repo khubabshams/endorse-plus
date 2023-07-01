@@ -3,6 +3,8 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecommendationForm from "./RecommendationForm";
+import { Container } from "react-bootstrap";
+import styles from "../../styles/RecommendationCreateEditForm.module.css";
 
 const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();
@@ -13,7 +15,7 @@ const RecommendationCreateEditForm = (props) => {
     related_experience: props?.related_experience,
     relation: props?.relation,
   });
-  
+
   const [relations, setRelations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [receiverData, setReceiverData] = useState({});
@@ -115,22 +117,23 @@ const RecommendationCreateEditForm = (props) => {
   };
 
   return (
-    <RecommendationForm
-      {...{
-        handleSubmit,
-        receiverName: receiverData.name,
-        errors,
-        related_experience,
-        handleChange,
-        experiences,
-        relation,
-        relations,
-        content,
-        edit: props?.edit,
-      }}
-    />
+    <Container className={`bg-white pt-3`}>
+      <RecommendationForm
+        {...{
+          handleSubmit,
+          receiverName: receiverData.name,
+          errors,
+          related_experience,
+          handleChange,
+          experiences,
+          relation,
+          relations,
+          content,
+          edit: props?.edit,
+        }}
+      />
+    </Container>
   );
 };
 
 export default RecommendationCreateEditForm;
-
