@@ -28,7 +28,7 @@ const RecommendationRouter = ({ profile_id }) => {
               <Tab.Content>
                 <Tab.Pane eventKey="received">
                   <RecommendationsListPage
-                    filter={`receiver=${profile_id}&ordering=-created_at&`}
+                    filter={`receiver=${profile_id}&ordering=-is_featured&`}
                   />
                 </Tab.Pane>
                 <Tab.Pane eventKey="sent">
