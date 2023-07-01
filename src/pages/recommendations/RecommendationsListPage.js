@@ -4,6 +4,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Recommendation from "../../components/recommendation/Recommendation";
 import { Col, Row } from "react-bootstrap";
 import Loader from "../../components/Loader";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 const RecommendationsListPage = ({ filter = "" }) => {
   const [recommendations, setRecommendations] = useState({ results: [] });
@@ -12,9 +14,8 @@ const RecommendationsListPage = ({ filter = "" }) => {
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        
         const { data } = await axiosReq.get(`/recommendations/?${filter}`);
-        console.log("insiiiiide",data);
+        console.log("insiiiiide", data);
         setRecommendations(data);
         setHasLoaded(true);
       } catch (error) {
@@ -33,13 +34,21 @@ const RecommendationsListPage = ({ filter = "" }) => {
           <Row>
             <Col>
               {recommendations.results.length ? (
-                recommendations.results.map((recommendation) => (
-                  <Recommendation
-                    key={recommendation.id}
-                    {...recommendation}
-                    setRecommendations={setRecommendations}
-                  />
-                ))
+                <InfiniteScroll
+                  children={recommendations.results.map((recommendation) => (
+                    <Recommendation
+                      key={recommendation.id}
+                      {...recommendation}
+                      setRecommendations={setRecommendations}
+                    />
+                  ))}
+                  dataLength={recommendations.results.length}
+                  loader={<Loader />}
+                  hasMore={!!recommendations.next}
+                  next={() =>
+                    fetchMoreData(recommendations, setRecommendations)
+                  }
+                />
               ) : (
                 <div>No Results Found</div>
               )}
