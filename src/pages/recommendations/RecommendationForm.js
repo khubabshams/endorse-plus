@@ -91,7 +91,11 @@ const RecommendationForm = ({
       {edit ? (
         <></>
       ) : (
-        <Button className={`${btnStyles.Button} mb-2`} type="submit">
+        <Button
+          variant="secondary"
+          className={`${btnStyles.Button} mb-2`}
+          type="submit"
+        >
           Recommend
         </Button>
       )}

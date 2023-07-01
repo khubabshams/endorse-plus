@@ -70,7 +70,11 @@ const SignInForm = () => {
         </Form.Group>
         <CustomAlert error={errors.password} />
 
-        <Button className={`${btnStyles.Button} ${btnStyles.Lg}`} type="submit">
+        <Button
+          variant="secondary"
+          className={`${btnStyles.Button} ${btnStyles.Lg}`}
+          type="submit"
+        >
           Sign In
         </Button>
         <CustomAlert error={errors.non_field_errors} />

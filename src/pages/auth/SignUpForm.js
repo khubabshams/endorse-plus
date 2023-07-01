@@ -53,9 +53,9 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        
+
         <CustomAlert error={errors.username} />
-        
+
         <Form.Group controlId="password1">
           <Form.Label className="d-none">Password</Form.Label>
           <Form.Control
@@ -82,11 +82,15 @@ const SignUpForm = () => {
         </Form.Group>
         <CustomAlert error={errors.password2} />
 
-        <Button className={`${btnStyles.Button} ${btnStyles.Lg}`} type="submit">
+        <Button
+          variant="secondary"
+          className={`${btnStyles.Button} ${btnStyles.Lg}`}
+          type="submit"
+        >
           Sign Up
         </Button>
         <CustomAlert error={errors.non_field_errors} />
-        
+
         <Link to="/signin">
           Already have an account? <span>click here to sign in!</span>
         </Link>

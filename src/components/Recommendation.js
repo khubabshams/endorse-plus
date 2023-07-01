@@ -175,10 +175,12 @@ const Recommendation = (props) => {
             (!editMode ? (
               <span>
                 <Button
+                  variant="secondary"
                   onClick={handleEdit}
                   className={`fa-solid fa-pen-to-square ${btnStyles.Button} ${btnStyles.Option}`}
                 ></Button>
                 <Button
+                  variant="secondary"
                   onClick={handleDelete}
                   className={`fa-solid fa-trash ${btnStyles.Button} ${btnStyles.Option}`}
                 ></Button>
@@ -186,11 +188,13 @@ const Recommendation = (props) => {
             ) : (
               <>
                 <Button
+                  variant="secondary"
                   form="recommendationCreateEditForm"
                   type="submit"
                   className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
                 ></Button>
                 <Button
+                  variant="secondary"
                   onClick={handleDelete}
                   className={`fa-solid fa-trash ${btnStyles.Button} ${btnStyles.Option}`}
                 ></Button>
@@ -232,6 +236,7 @@ const Recommendation = (props) => {
       <div className={appStyles.CardFooter}>
         {boost_id ? (
           <Button
+            variant="secondary"
             onClick={handleUnBoost}
             className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
           ></Button>
@@ -244,6 +249,7 @@ const Recommendation = (props) => {
               }
             >
               <Button
+                variant="secondary"
                 onClick={handleBoost}
                 className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
               ></Button>
@@ -262,7 +268,9 @@ const Recommendation = (props) => {
             }
           >
             <Button
+              variant="secondary"
               disabled
+              style={{ pointerEvents: "none" }}
               className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
             ></Button>
           </OverlayTrigger>
@@ -274,6 +282,7 @@ const Recommendation = (props) => {
           ></Button>
         ) : isReceiver && !is_featured ? (
           <Button
+            variant="secondary"
             onClick={handleFeature}
             className={`fa-solid fa-star ${btnStyles.Button} ${btnStyles.Option}`}
           ></Button>
