@@ -4,7 +4,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecommendationForm from "./RecommendationForm";
 import { Container } from "react-bootstrap";
-import styles from "../../styles/RecommendationCreateEditForm.module.css";
 
 const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();

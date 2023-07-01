@@ -1,9 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
-import styles from "../../styles/RecommendationCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import CustomAlert from "../CustomAlert";
-import appStyles from "../../App.module.css";
 
 const RecommendationForm = ({
   handleSubmit,
@@ -20,7 +18,6 @@ const RecommendationForm = ({
   return (
     <Form
       onSubmit={handleSubmit}
-      className={styles.Form}
       id="recommendationCreateEditForm"
     >
       <Form.Group controlId="receiver">

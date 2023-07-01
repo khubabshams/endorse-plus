@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/RecommendationsListPage.module.css";
 import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recommendation from "../../components/recommendation/Recommendation";

@@ -1,13 +1,9 @@
 import { RecommendationHeader } from "./RecommendationHeader";
 import { RecommendationContent } from "./RecommendationContent";
 import React, { useState } from "react";
-import { Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
+import { Card} from "react-bootstrap";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Avatar from "../Avatar";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/Recommendation.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import RecommendationCreateEditForm from "./RecommendationCreateEditForm";
 import RecommendationFooter from "./RecommendationFooter";
