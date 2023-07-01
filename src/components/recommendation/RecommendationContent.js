@@ -14,26 +14,24 @@ export function RecommendationContent({
   receiver_title,
 }) {
   return (
-    <Link to={`/recommendations/${id}`}>
+    <>
       <Card.Text>
-        <p className={appStyles.Content}>{content}</p>
-
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>{recommendationNote}</Tooltip>}
-        >
-          <span className="mt-2">
-            <Link to={`/profiles/${receiver}`}>
-              <Avatar
-                src={receiver_image}
-                text={receiver_name}
-                title={receiver_title}
-                height={40}
-              />
-            </Link>
-          </span>
-        </OverlayTrigger>
+        <Link to={`/recommendations/${id}`}>
+          <span className={appStyles.Content}>{content}</span>
+        </Link>
+        <br />
+        <span className={`text-muted ${appStyles.Note}`}>
+          {recommendationNote}
+        </span>
       </Card.Text>
-    </Link>
+      <Link to={`/profiles/${receiver}`} className="mt-2">
+        <Avatar
+          src={receiver_image}
+          text={receiver_name}
+          title={receiver_title}
+          height={40}
+        />
+      </Link>
+    </>
   );
 }

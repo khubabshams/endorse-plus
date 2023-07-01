@@ -29,6 +29,10 @@ a:hover {
   font-size: 120%;
 }
 
+.Note {
+  font-size: 70%;
+}
+
 .CardHeader {
   display: flex;
   justify-content: space-between;
@@ -37,7 +41,6 @@ a:hover {
 
 .Info {
   display: flex;
-  /* justify-content: flex-end; */
   align-items: center;
   padding-right: 5px;
   font-size: 80%;

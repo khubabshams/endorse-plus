@@ -9,6 +9,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import RecommendationsListPage from "./pages/recommendations/RecommendationsListPage";
 import RecommendationCreateEditForm from "./components/recommendation/RecommendationCreateEditForm";
 import RecommendationPage from "./pages/recommendations/RecommendationPage";
+import RecommendationRouter from "./pages/recommendations/RecommendationRouter";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -19,7 +20,11 @@ function App() {
       <NavBar />
       <Container className={`${styles.Main}`}>
         <Switch>
-          <Route exact path="/" render={() => <RecommendationsListPage />} />
+          <Route
+            exact
+            path="/"
+            render={() => <RecommendationRouter profile_id={profile_id} />}
+          />
           <Route
             exact
             path="/boosted"
