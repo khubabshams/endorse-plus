@@ -5,7 +5,7 @@ import { Spinner } from "react-bootstrap";
 const Loader = () => {
   return (
     <div className={styles.Outer}>
-      <Spinner className={styles.Inner} animation="grow" />
+      <Spinner animation="grow" />
     </div>
   );
 };
