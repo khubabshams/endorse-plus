@@ -7,7 +7,7 @@ const RecommendationRouter = ({ profile_id }) => {
     <Tab.Container defaultActiveKey="received">
       <Row>
         <Col xs={12} md={10}>
-          <Nav variant="tabs" fill className="bg-white">
+          <Nav variant="tabs" fill className="bg-white mb-2">
             <Nav.Item>
               <Nav.Link eventKey="received" >
                 <i className="fa-solid fa-download"></i> Received
