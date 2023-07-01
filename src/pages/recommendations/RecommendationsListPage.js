@@ -31,7 +31,7 @@ const RecommendationsListPage = ({ filter = "" }) => {
       {hasLoaded ? (
         <>
           <Row>
-            <Col xs={12} md={10}>
+            <Col>
               {recommendations.results.length ? (
                 recommendations.results.map((recommendation) => (
                   <Recommendation

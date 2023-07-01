@@ -7,15 +7,15 @@ const RecommendationRouter = ({ profile_id }) => {
     <Tab.Container defaultActiveKey="received">
       <Row>
         <Col xs={12} md={10}>
-          <Nav variant="pills" className="justify-content-center">
+          <Nav variant="tabs" fill className="bg-white">
             <Nav.Item>
-              <Nav.Link eventKey="received">
-                <i className="fa-solid fa-download"></i>Received
+              <Nav.Link eventKey="received" >
+                <i className="fa-solid fa-download"></i> Received
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="sent">
-                <i className="fa-solid fa-upload"></i>Sent
+                <i className="fa-solid fa-upload"></i> Sent
               </Nav.Link>
             </Nav.Item>
           </Nav>
