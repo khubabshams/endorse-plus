@@ -4,23 +4,21 @@ import RecommendationsListPage from "./RecommendationsListPage";
 
 const RecommendationRouter = ({ profile_id }) => {
   return (
-    <>
+    <Tab.Container defaultActiveKey="received">
       <Row>
         <Col xs={12} md={10}>
-          <Tab.Container defaultActiveKey="received">
-            <Nav variant="pills" className="justify-content-center">
-              <Nav.Item>
-                <Nav.Link eventKey="received">
-                  <i className="fa-solid fa-download"></i>Received
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="sent">
-                  <i className="fa-solid fa-upload"></i>Sent
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Tab.Container>
+          <Nav variant="pills" className="justify-content-center">
+            <Nav.Item>
+              <Nav.Link eventKey="received">
+                <i className="fa-solid fa-download"></i>Received
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="sent">
+                <i className="fa-solid fa-upload"></i>Sent
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
         </Col>
       </Row>
       <Row>
@@ -39,7 +37,7 @@ const RecommendationRouter = ({ profile_id }) => {
           </Tab.Content>
         </Col>
       </Row>
-    </>
+    </Tab.Container>
   );
 };
 
