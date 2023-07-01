@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/RecommendationsListPage.module.css";
+import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recommendation from "../../components/recommendation/Recommendation";
-import { Col, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import Loader from "../../components/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -11,11 +12,15 @@ const RecommendationsListPage = ({ filter = "" }) => {
   const [recommendations, setRecommendations] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  const [query, setQuery] = useState("");
+
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        const { data } = await axiosReq.get(`/recommendations/?${filter}`);
-        console.log("insiiiiide", data);
+        const { data } = await axiosReq.get(
+          `/recommendations/?${filter}search=${query}`
+        );
+
         setRecommendations(data);
         setHasLoaded(true);
       } catch (error) {
@@ -24,15 +29,31 @@ const RecommendationsListPage = ({ filter = "" }) => {
     };
 
     setHasLoaded(false);
-    fetchRecommendations();
-  }, [filter]);
+    const timer = setTimeout(() => {
+      fetchRecommendations();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query]);
 
   return (
     <>
-      {hasLoaded ? (
-        <>
-          <Row>
-            <Col>
+      <Row>
+        <Col>
+          <i className={`fas fa-search position-absolute text-muted ${appStyles.SearchIcon}`}></i>
+          <Form onSubmit={(event) => event.preventDefault()}>
+            <Form.Control
+              type="text"
+              className={`mr-sm-2 ${appStyles.SearchBar}`}
+              placeholder="Search Recommendations"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </Form>
+          {hasLoaded ? (
+            <>
               {recommendations.results.length ? (
                 <InfiniteScroll
                   children={recommendations.results.map((recommendation) => (
@@ -50,14 +71,14 @@ const RecommendationsListPage = ({ filter = "" }) => {
                   }
                 />
               ) : (
-                <div>No Results Found</div>
+                <div className={appStyles.NoResults}>No Results Found</div>
               )}
-            </Col>
-          </Row>
-        </>
-      ) : (
-        <Loader />
-      )}
+            </>
+          ) : (
+            <Loader />
+          )}
+        </Col>
+      </Row>
     </>
   );
 };

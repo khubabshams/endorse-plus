@@ -25,6 +25,23 @@ a:hover {
   color: inherit;
 }
 
+.SearchIcon {
+  padding: 9px;
+  padding-left: 15px;
+}
+
+.SearchBar {
+  border-radius: 0%;
+  padding-left: 35px;
+}
+
+.NoResults {
+  display: flex;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+}
+
 .Content {
   font-size: 120%;
 }
