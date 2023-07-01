@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import styles from "../../styles/RecommendationCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import CustomAlert from "../../components/CustomAlert";
+import CustomAlert from "../CustomAlert";
 import appStyles from "../../App.module.css";
 
 const RecommendationForm = ({

@@ -5,10 +5,10 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import RecommendationCreateEditForm from "./pages/recommendations/RecommendationCreateEditForm";
-import RecommendationPage from "./pages/recommendations/RecommendationPage";
-import RecommendationsListPage from "./pages/recommendations/RecommendationsListPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import RecommendationsListPage from "./pages/recommendations/RecommendationsListPage";
+import RecommendationCreateEditForm from "./components/recommendation/RecommendationCreateEditForm";
+import RecommendationPage from "./pages/recommendations/RecommendationPage";
 
 function App() {
   const currentUser = useCurrentUser();

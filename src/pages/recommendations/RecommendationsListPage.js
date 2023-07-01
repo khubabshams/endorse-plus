@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/RecommendationsListPage.module.css";
 import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import Recommendation from "../../components/Recommendation";
+import Recommendation from "../../components/recommendation/Recommendation";
 import { Col, Row } from "react-bootstrap";
 import Loader from "../../components/Loader";
 
