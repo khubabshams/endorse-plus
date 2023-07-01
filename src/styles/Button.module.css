@@ -22,9 +22,10 @@
   color: black;
 }
 
-.Option {
-  color: #c8c8ca8c;
-}
-.Option:hover {
+.Filled {
   color: black;
+}
+
+.Filled:hover {
+  color: c8c8ca8c;
 }

@@ -219,31 +219,14 @@ const Recommendation = (props) => {
           recommendationReadonly
         )}
       </Card.Body>
-      <span className={`text-muted ${appStyles.Info}`}>
-        {boosts_count === 1 ? (
-          <>
-            <i className={`fa-solid fa-rocket`}></i>1 Boost
-          </>
-        ) : (
-          <>
-            <i className={`fa-solid fa-rocket`}></i>
-            {boosts_count} Boosts
-          </>
-        )}
-        {is_featured && (
-          <>
-            <i className={`fa-solid fa-star`}></i> Featured
-          </>
-        )}
-      </span>
       <hr />
       <div className={appStyles.CardFooter}>
         {boost_id ? (
-          <Button
+          <span
             variant="secondary"
             onClick={handleUnBoost}
-            className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
-          ></Button>
+            className={`fa-solid fa-rocket ${btnStyles.Option} ${btnStyles.Filled}`}
+          ></span>
         ) : currentUser ? (
           boosts_count === 0 ? (
             <OverlayTrigger
@@ -252,17 +235,17 @@ const Recommendation = (props) => {
                 <Tooltip>Be the first one to boost this recommendation</Tooltip>
               }
             >
-              <Button
+              <span
                 variant="secondary"
                 onClick={handleBoost}
-                className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
-              ></Button>
+                className={`fa-solid fa-rocket  ${btnStyles.Option}`}
+              ></span>
             </OverlayTrigger>
           ) : (
-            <Button
+            <span
               onClick={handleBoost}
-              className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
-            ></Button>
+              className={`fa-solid fa-rocket ${btnStyles.Option}`}
+            ></span>
           )
         ) : (
           <OverlayTrigger
@@ -271,25 +254,36 @@ const Recommendation = (props) => {
               <Tooltip>Login to be able to boost recommendation</Tooltip>
             }
           >
-            <Button
+            <span
               variant="secondary"
               disabled
               style={{ pointerEvents: "none" }}
-              className={`fa-solid fa-rocket ${btnStyles.Button} ${btnStyles.Option}`}
-            ></Button>
+              className={`fa-solid fa-rocket ${btnStyles.Option}`}
+            ></span>
           </OverlayTrigger>
         )}
+        <span className={`text-muted ${appStyles.Info}`}>
+          {boosts_count === 1 ? (
+            <>
+            x1
+            </>
+          ) : (
+            <>
+               x{boosts_count}
+            </>
+          )}
+        </span>
         {isReceiver && is_featured ? (
-          <Button
+          <span
             onClick={handleUnFeature}
-            className={`fa-solid fa-star ${btnStyles.Button} ${btnStyles.Option}`}
-          ></Button>
+            className={`fa-solid fa-star ${btnStyles.Option} ${btnStyles.Filled}`}
+          ></span>
         ) : isReceiver && !is_featured ? (
-          <Button
+          <span
             variant="secondary"
             onClick={handleFeature}
-            className={`fa-solid fa-star ${btnStyles.Button} ${btnStyles.Option}`}
-          ></Button>
+            className={`fa-solid fa-star ${btnStyles.Option}`}
+          ></span>
         ) : (
           <></>
         )}
