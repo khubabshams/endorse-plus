@@ -8,87 +8,49 @@ import { Container } from "react-bootstrap";
 const RequestCreateForm = (props) => {
   const currentUser = useCurrentUser();
 
-  const [recommendationData, setRecommendationData] = useState({
+  const [requestData, setRequestData] = useState({
     receiver: props?.receiver,
-    content: props?.content,
-    related_experience: props?.related_experience,
-    relation: props?.relation,
+    message: props?.message,
   });
 
-  const [relations, setRelations] = useState([]);
-  const [experiences, setExperiences] = useState([]);
   const [receiverData, setReceiverData] = useState({});
   const [errors, setErrors] = useState({});
 
   const { receiver_id } = useParams();
-  const { receiver, content, related_experience, relation } =
-    recommendationData;
+  const { receiver, message } = requestData;
 
   const history = useHistory();
 
   useEffect(() => {
-    const fetchRecommendationData = async () => {
+    const fetchRquestData = async () => {
       try {
-        let company;
-        const [{ data: relationsData }, { data: receiverData }] =
-          await Promise.all([
-            axiosReq.get(`/relationships/`),
-            axiosReq.get(`/profiles/${receiver ? receiver : receiver_id}`),
-          ]);
-
-        receiverData?.experiences.map(async (experience_id) => {
-          await Promise.all(
-            [`/experiences/${experience_id}`].map((url) =>
-              axiosReq.get(url).then(async (res) => {
-                company = await axiosReq.get(`/companies/${res?.data.company}`);
-
-                setExperiences((prevState) => [
-                  ...prevState,
-                  { ...res?.data, company: company?.data },
-                ]);
-              })
-            )
-          );
-        });
-
-        setRelations(relationsData.results);
+        const { data: receiverData } = await axiosReq.get(
+          `/profiles/${receiver ? receiver : receiver_id}`
+        );
         setReceiverData(receiverData);
       } catch (err) {
         console.log(err);
       }
     };
 
-    fetchRecommendationData();
+    fetchRquestData();
   }, [receiver, receiver_id]);
 
   const handleChange = (event) => {
-    setRecommendationData({
-      ...recommendationData,
+    setRequestData({
+      ...requestData,
       [event.target.name]: event.target.value,
     });
-    if (["related_experience", "relation"].includes(event.target.name)) {
-      const name =
-        event.target.childNodes[event.target.selectedIndex].getAttribute(
-          "name"
-        );
-      const updatedValue =
-        event.target.name === "related_experience"
-          ? { company_name: name }
-          : { relation_name: name };
-      props.updateRecommendation && props.updateRecommendation(updatedValue);
-    }
   };
 
-  const onSubmitSucces = (recommendation) => {
+  const onSubmitSucces = (request) => {
     if (props?.edit) {
-      props.updateRecommendation({
-        content: content,
-        related_experience: related_experience,
-        relation: relation,
+      props.updateRequest({
+        message: message,
       });
       props.setEditMode(false);
     } else {
-      history.push(`/recommendations/${recommendation.id}`);
+      history.push(`/requests/${request.id}`);
     }
   };
 
@@ -98,15 +60,13 @@ const RequestCreateForm = (props) => {
     const formData = new FormData();
     formData.append("profile", Number(currentUser?.profile_id));
     formData.append("receiver", receiver ? receiver : receiver_id);
-    formData.append("content", content);
-    formData.append("related_experience", related_experience);
-    relation && formData.append("relation", relation);
+    formData.append("message", message);
 
     try {
-      const { data: recommendation } = !props?.edit
-        ? await axiosReq.post("/recommendations/", formData)
-        : await axiosReq.put(`/recommendations/${props.id}`, formData);
-      onSubmitSucces(recommendation);
+      const { data: request } = !props?.edit
+        ? await axiosReq.post("/requests/", formData)
+        : await axiosReq.put(`/requests/${props.id}`, formData);
+      onSubmitSucces(request);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -122,12 +82,8 @@ const RequestCreateForm = (props) => {
           handleSubmit,
           receiverName: receiverData.name,
           errors,
-          related_experience,
           handleChange,
-          experiences,
-          relation,
-          relations,
-          content,
+          message,
           edit: props?.edit,
         }}
       />
