@@ -1,5 +1,5 @@
-import { ProfileMobileTile } from "./ProfileMobileTile";
-import { ProfileDesktopTile } from "./ProfileDesktopTile";
+import { ProfileMobileTile } from "./profile/ProfileMobileTile";
+import { ProfileDesktopTile } from "./profile/ProfileDesktopTile";
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useProfileData } from "../contexts/ProfileDataContext";
