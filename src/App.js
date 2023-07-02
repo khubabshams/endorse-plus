@@ -2,7 +2,6 @@ import { AppRoutes } from "./AppRoutes";
 import { Container } from "react-bootstrap";
 import styles from "./App.module.css";
 import NavBar from "./components/navbar/NavBar";
-import "./api/axiosDefaults";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {

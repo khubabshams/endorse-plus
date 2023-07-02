@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
-export function LoggedOutLinks({}) {
+export function LoggedOutLinks() {
   return (
     <>
       <NavLink
