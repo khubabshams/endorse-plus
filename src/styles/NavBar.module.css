@@ -1,7 +1,7 @@
 .NavBar {
   background-color: white;
   border: 1px solid #c8c8ca8c;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .NavBar i {
