@@ -6,9 +6,12 @@ export function ProfileMobileTile({ profiles }) {
   return (
     <div className="d-flex justify-content-around">
       {profiles.results.slice(0, 5).map((profile) => (
-        <Link to={`/profiles/${profile.id}`} key={profile.id}>
-          <Avatar src={profile.image} height={40} />
-        </Link>
+        <span key={profile.id}>
+          <Link to={`/profiles/${profile.id}`}>
+            <Avatar src={profile.image} height={40} />
+          </Link>
+          <hr className="w-50 align-self-center" />
+        </span>
       ))}
     </div>
   );

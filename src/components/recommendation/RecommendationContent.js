@@ -24,14 +24,18 @@ export function RecommendationContent({
           {recommendationNote}
         </span>
       </Card.Text>
-      <Link to={`/profiles/${receiver}`} className="mt-2">
-        <Avatar
-          src={receiver_image}
-          text={receiver_name}
-          title={receiver_title}
-          height={40}
-        />
-      </Link>
+      <div className="w-50">
+        <hr />
+        <Link to={`/profiles/${receiver}`} className="mt-2">
+          <Avatar
+            src={receiver_image}
+            text={receiver_name}
+            title={receiver_title}
+            height={40}
+          />
+        </Link>
+        <hr />
+      </div>
     </>
   );
 }
