@@ -8,6 +8,7 @@ import RecommendationPage from "./pages/recommendations/RecommendationPage";
 import RecommendationRouter from "./pages/recommendations/RecommendationRouter";
 import RequestCreateForm from "./components/requests/RequestCreateForm";
 import NotFoundPage from "./pages/NotFoundPage";
+import RequestPage from "./pages/requests/RequestPage";
 
 export function AppRoutes({ profile_id }) {
   return (
@@ -51,6 +52,7 @@ export function AppRoutes({ profile_id }) {
         path="/requests/create/:receiver_id"
         render={() => <RequestCreateForm />}
       />
+      <Route exact path="/requests/:id" render={() => <RequestPage />} />
 
       {/* 404 Route */}
       <Route render={() => <NotFoundPage />} />
