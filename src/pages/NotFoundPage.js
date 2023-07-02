@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import error_404 from "../assets/error_404.png";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import btnStyles from "../styles/Button.module.css";
@@ -7,7 +7,7 @@ import btnStyles from "../styles/Button.module.css";
 const NotFoundPage = () => {
   const history = useHistory();
   return (
-    <Container className="text-center">
+    <Container className="text-center bg-white p-5">
       <img src={error_404} height={40} width={40} alt="Error 404" />
       <br />
       <h1>Sorry, page not found.</h1>
@@ -16,7 +16,7 @@ const NotFoundPage = () => {
         <Button
           variant="secondary"
           onClick={() => history.goBack()}
-          className={`${btnStyles.Button} ${btnStyles.Option}`}
+          className={`${btnStyles.Button}`}
         >
           <i className={`fa-solid fa-arrow-left`}></i> BACK
         </Button>{" "}
