@@ -1,7 +1,6 @@
+import React from "react";
 import { LoggedOutLinks } from "./LoggedOutLinks";
 import { LoggedInLinks } from "./LoggedInLinks";
-import React from "react";
-
 import styles from "../../styles/NavBar.module.css";
 import { Nav, Navbar, Container, Image } from "react-bootstrap";
 import logo from "../../assets/logo.png";
