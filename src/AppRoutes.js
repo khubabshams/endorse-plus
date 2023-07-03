@@ -6,9 +6,10 @@ import RecommendationsListPage from "./pages/recommendations/RecommendationsList
 import RecommendationCreateEditForm from "./components/recommendation/RecommendationCreateEditForm";
 import RecommendationPage from "./pages/recommendations/RecommendationPage";
 import RecommendationRouter from "./pages/recommendations/RecommendationRouter";
-import RequestCreateForm from "./components/requests/RequestCreateForm";
-import NotFoundPage from "./pages/NotFoundPage";
+import RequestCreateForm from "./components/request/RequestCreateForm";
 import RequestPage from "./pages/requests/RequestPage";
+import RequestsRouter from "./pages/requests/RequestsRouter";
+import NotFoundPage from "./pages/NotFoundPage";
 import ErrorPage from "./pages/ErrorPage";
 
 export function AppRoutes({ profile_id }) {
@@ -17,7 +18,6 @@ export function AppRoutes({ profile_id }) {
       {/* General Routes */}
       <Route exact path="/signin" render={() => <SignInForm />} />
       <Route exact path="/signup" render={() => <SignUpForm />} />
-      <Route exact path="/requests" render={() => <h1>Requests</h1>} />
       <Route exact path="/profile" render={() => <h1>Profile</h1>} />
       <Route exact path="/logout" render={() => <h1>Logout</h1>} />
 
@@ -54,6 +54,11 @@ export function AppRoutes({ profile_id }) {
         render={() => <RequestCreateForm />}
       />
       <Route exact path="/requests/:id" render={() => <RequestPage />} />
+      <Route
+        exact
+        path="/requests"
+        render={() => <RequestsRouter profile_id={profile_id} />}
+      />
 
       {/* 403 Route */}
       <Route exact path="/un-authorised" render={() => <ErrorPage />} />
