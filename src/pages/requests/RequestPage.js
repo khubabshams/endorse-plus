@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-import RecommendationRequest from "../../components/requests/RecommendationRequest";
+import RecommendationRequest from "../../components/request/RecommendationRequest";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const RequestPage = () => {
