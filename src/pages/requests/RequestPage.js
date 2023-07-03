@@ -14,14 +14,10 @@ const RequestPage = () => {
     const handleMount = async () => {
       try {
         const { data: request } = await axiosReq(`/requests/${id}`);
-        if (
-          ![request?.profile, request?.receiver].includes(
-            currentUser?.profile_id
-          )
-        ) {
-          history.push("/un-authorised");
-        }
-        setRequests({ results: [request] });
+        currentUser &&
+          [request?.profile, request?.receiver].includes(
+            currentUser?.profile_id && setRequests({ results: [request] })
+          );
       } catch (err) {
         if (err.response?.status === 404) {
           history.push("/not-found");
@@ -30,7 +26,7 @@ const RequestPage = () => {
     };
 
     handleMount();
-  }, [id]);
+  }, [id, currentUser]);
 
   return (
     <>
