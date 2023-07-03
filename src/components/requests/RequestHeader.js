@@ -7,25 +7,41 @@ import Avatar from "../Avatar";
 
 export function RequestHeader({
   profile,
+  seen,
   profile_image,
   profile_name,
   profile_title,
-  date,
+  receiver_image,
+  receiver_name,
+  receiver_title,
+  created_at,
   is_owner,
   handleDelete,
 }) {
   return (
     <div className={appStyles.CardHeader}>
       <span>
-        <Link to={`/profiles/${profile}`}>
-          <Avatar
-            src={profile_image}
-            text={profile_name}
-            title={profile_title}
-            height={60}
-            time={date}
-          />
-        </Link>
+        {is_owner ? (
+          <Link to={`/profiles/${profile}`}>
+            <Avatar
+              src={receiver_image}
+              text={receiver_name}
+              title={receiver_title}
+              height={60}
+              time={`sent ${created_at}`}
+            />
+          </Link>
+        ) : (
+          <Link to={`/profiles/${profile}`}>
+            <Avatar
+              src={profile_image}
+              text={profile_name}
+              title={profile_title}
+              height={60}
+              time={`received ${created_at}`}
+            />
+          </Link>
+        )}
       </span>
       <span>
         {is_owner && (

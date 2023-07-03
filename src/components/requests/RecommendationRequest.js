@@ -81,24 +81,12 @@ const RecommendationRequest = (props) => {
   return (
     <Card className="rounded-0 mt-2">
       <RequestHeader
-        profile={profile}
-        profile_image={profile_image}
-        profile_name={profile_name}
-        profile_title={profile_title}
-        date={created_at}
-        is_owner={is_owner}
+        {...props}
         handleDelete={handleDelete}
       />
       <hr />
       <Card.Body>
-        <RequestContent
-          id={id}
-          message={message}
-          receiver={receiver}
-          receiver_image={receiver_image}
-          receiver_name={receiver_name}
-          receiver_title={receiver_title}
-        />
+        <RequestContent id={id} message={message} />
       </Card.Body>
       <hr />
       <RequestFooter
