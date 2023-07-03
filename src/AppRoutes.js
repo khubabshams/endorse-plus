@@ -9,6 +9,7 @@ import RecommendationRouter from "./pages/recommendations/RecommendationRouter";
 import RequestCreateForm from "./components/requests/RequestCreateForm";
 import NotFoundPage from "./pages/NotFoundPage";
 import RequestPage from "./pages/requests/RequestPage";
+import ErrorPage from "./pages/ErrorPage";
 
 export function AppRoutes({ profile_id }) {
   return (
@@ -54,7 +55,11 @@ export function AppRoutes({ profile_id }) {
       />
       <Route exact path="/requests/:id" render={() => <RequestPage />} />
 
+      {/* 403 Route */}
+      <Route exact path="/un-authorised" render={() => <ErrorPage />} />
+
       {/* 404 Route */}
+      <Route exact path="/not-found" render={() => <NotFoundPage />} />
       <Route render={() => <NotFoundPage />} />
     </Switch>
   );
