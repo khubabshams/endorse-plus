@@ -37,7 +37,7 @@ export function LoggedInLinks({ handleSignOut, currentUser }) {
         Requests
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i class="fa-solid fa-right-from-bracket"></i>
+        <i className="fa-solid fa-right-from-bracket"></i>
         <br />
         Logout
       </NavLink>
