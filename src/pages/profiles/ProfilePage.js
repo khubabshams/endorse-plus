@@ -16,6 +16,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import RecommendationRouter from "../recommendations/RecommendationRouter";
 
 function ProfilePage() {
   const currentUser = useCurrentUser();
@@ -91,6 +92,9 @@ function ProfilePage() {
             ) : (
               <></>
             )}
+            <div className="mt-2">
+              <RecommendationRouter profile_id={id} profile />
+            </div>
           </>
         ) : (
           <Card className="card p-4">
