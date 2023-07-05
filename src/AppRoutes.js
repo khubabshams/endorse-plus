@@ -11,6 +11,7 @@ import RequestPage from "./pages/requests/RequestPage";
 import RequestsRouter from "./pages/requests/RequestsRouter";
 import NotFoundPage from "./pages/NotFoundPage";
 import ErrorPage from "./pages/ErrorPage";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 export function AppRoutes({ profile_id }) {
   return (
@@ -20,6 +21,9 @@ export function AppRoutes({ profile_id }) {
       <Route exact path="/signup" render={() => <SignUpForm />} />
       <Route exact path="/profile" render={() => <h1>Profile</h1>} />
       <Route exact path="/logout" render={() => <h1>Logout</h1>} />
+
+      {/* Profile Routes */}
+      <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
 
       {/* Recommendations Routes */}
       <Route
