@@ -3,11 +3,12 @@ import { Col, Row, Tab, Nav } from "react-bootstrap";
 import RecommendationsListPage from "./RecommendationsListPage";
 import TopEndorsedProfiles from "../../components/TopEndorsedProfiles";
 
-const RecommendationRouter = ({ profile_id }) => {
+const RecommendationRouter = ({ profile_id, profile = false }) => {
   return (
     <Row>
       <Col xs={12} md={9}>
-        <TopEndorsedProfiles  mobile/>
+        {!profile && <TopEndorsedProfiles mobile />}
+
         {profile_id ? (
           <Tab.Container defaultActiveKey="received">
             <Row>
@@ -49,7 +50,7 @@ const RecommendationRouter = ({ profile_id }) => {
       </Col>
 
       <Col md={3} className="d-none d-md-block">
-        <TopEndorsedProfiles />
+        {!profile && <TopEndorsedProfiles />}
       </Col>
     </Row>
   );
