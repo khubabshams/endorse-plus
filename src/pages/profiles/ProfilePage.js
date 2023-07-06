@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useParams } from "react-router";
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 
 import {
   useProfileData,
@@ -12,27 +12,31 @@ import {
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Loader from "../../components/Loader";
-import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import appStyles from "../../App.module.css";
 import RecommendationRouter from "../recommendations/RecommendationRouter";
+import Experience from "../../components/profile/Experience";
+import ExperienceCreateEditForm from "../../components/profile/ExperienceCreateEditForm";
 
 function ProfilePage() {
   const currentUser = useCurrentUser();
   const { id } = useParams();
 
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [createExperience, handleCreateExperience] = useState(false);
   const [experiences, setExperiences] = useState({ results: [] });
 
   const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
 
   const [profile] = pageProfile.results;
-  const is_owner = currentUser?.username === profile?.owner;
+  const is_owner = currentUser?.profile_id === Number(id);
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(is_owner);
       try {
         const [{ data: pageProfile }, { data: experiences }] =
           await Promise.all([
@@ -61,33 +65,42 @@ function ProfilePage() {
             <ProfileHeader profile={profile} />
             {experiences.results.length ? (
               <Card className={`p-1 ${styles.Experience}`}>
-                <Container className="mb-2">
+                <div className={appStyles.CardHeader}>
                   <h3>Experiences:</h3>
-                  {experiences.results.map((experience) => (
-                    <>
-                      <h4>
-                        {experience.date_from} •
-                        {experience.is_current ? " now" : experience.date_to}
-                      </h4>
-                      <h4>
-                        {experience.title} at {experience.company_name}
-                      </h4>
-                      <p>{experience.description}</p>
-                      {experience.recommendations_count && (
-                        <>
-                          <span
-                            className={`d-flex justify-content-center ${appStyles.Info}`}
-                          >
-                            <Link to={`/experiences/${experience.id}`}>
-                              {experience.recommendations_count} Recommendations
-                            </Link>
-                          </span>
-                        </>
-                      )}
-                      <hr className="w-50 align-self-center" />
-                    </>
-                  ))}
-                </Container>
+                  {is_owner &&
+                    (createExperience ? (
+                      <span>
+                        <Button
+                          variant="secondary"
+                          onClick={() => handleCreateExperience(false)}
+                          className={`fa-solid fa-arrow-left ${btnStyles.Button} ${btnStyles.Option}`}
+                        ></Button>
+                        <Button
+                          variant="secondary"
+                          form="experienceCreateEditForm"
+                          type="submit"
+                          className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
+                        ></Button>
+                      </span>
+                    ) : (
+                      <Button
+                        variant="secondary"
+                        onClick={() => handleCreateExperience(true)}
+                        className={`fa-solid fa-plus ${btnStyles.Button} ${btnStyles.Option}`}
+                      ></Button>
+                    ))}
+                </div>
+                {!createExperience ? (
+                  experiences.results.map((experience) => (
+                    <Experience
+                      key={experience.id}
+                      {...experience}
+                      setExperiences={setExperiences}
+                    />
+                  ))
+                ) : (
+                  <Experience new={true} setExperiences={setExperiences} />
+                )}
               </Card>
             ) : (
               <></>
