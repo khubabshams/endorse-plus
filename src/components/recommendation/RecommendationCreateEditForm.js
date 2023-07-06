@@ -33,14 +33,16 @@ const RecommendationCreateEditForm = (props) => {
         const [{ data: relationsData }, { data: receiverData }] =
           await Promise.all([
             axiosReq.get(`/relationships/`),
-            axiosReq.get(`/profiles/${receiver ? receiver : receiver_id}`),
+            axiosReq.get(`/profiles/${receiver ? receiver : receiver_id}/`),
           ]);
 
         receiverData?.experiences.map(async (experience_id) => {
           await Promise.all(
             [`/experiences/${experience_id}`].map((url) =>
               axiosReq.get(url).then(async (res) => {
-                company = await axiosReq.get(`/companies/${res?.data.company}`);
+                company = await axiosReq.get(
+                  `/companies/${res?.data.company}/`
+                );
 
                 setExperiences((prevState) => [
                   ...prevState,
@@ -105,7 +107,7 @@ const RecommendationCreateEditForm = (props) => {
     try {
       const { data: recommendation } = !props?.edit
         ? await axiosReq.post("/recommendations/", formData)
-        : await axiosReq.put(`/recommendations/${props.id}`, formData);
+        : await axiosReq.put(`/recommendations/${props.id}/`, formData);
       onSubmitSucces(recommendation);
     } catch (err) {
       console.log(err);

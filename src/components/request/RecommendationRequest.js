@@ -60,7 +60,7 @@ const RecommendationRequest = (props) => {
   const changeSeen = async (seen) => {
     if (currentUser?.profile_id === receiver) {
       try {
-        await axiosRes.put(`/requests/seen/${id}`, {
+        await axiosRes.put(`/requests/seen/${id}/`, {
           seen: seen,
         });
         updateRequest({ seen: seen });
@@ -80,10 +80,7 @@ const RecommendationRequest = (props) => {
 
   return (
     <Card className="rounded-0 mt-2">
-      <RequestHeader
-        {...props}
-        handleDelete={handleDelete}
-      />
+      <RequestHeader {...props} handleDelete={handleDelete} />
       <hr />
       <Card.Body>
         <RequestContent id={id} message={message} />

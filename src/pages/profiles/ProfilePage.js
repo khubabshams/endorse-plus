@@ -56,15 +56,18 @@ function ProfilePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {hasLoaded ? (
           <>
-            <ProfileHeader profile={profile} />
-            
-              <ExperiencesList
-                is_owner={is_owner}
-                experiences={experiences}
-                createExperience={createExperience}
-                handleCreateExperience={handleCreateExperience}
-                setExperiences={setExperiences}
-              />
+            <ProfileHeader
+              profile={profile}
+              is_owner={is_owner}
+            />
+
+            <ExperiencesList
+              is_owner={is_owner}
+              experiences={experiences}
+              createExperience={createExperience}
+              handleCreateExperience={handleCreateExperience}
+              setExperiences={setExperiences}
+            />
             <div className="mt-2">
               <RecommendationRouter profile_id={id} profile />
             </div>

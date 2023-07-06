@@ -1,7 +1,7 @@
 import { RecommendationHeader } from "./RecommendationHeader";
 import { RecommendationContent } from "./RecommendationContent";
 import React, { useState } from "react";
-import { Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -114,7 +114,7 @@ const Recommendation = (props) => {
   const changeFeature = async (featured) => {
     if (currentUser?.profile_id === receiver) {
       try {
-        await axiosRes.put(`/recommendations/feature/${id}`, {
+        await axiosRes.put(`/recommendations/feature/${id}/`, {
           is_featured: featured,
         });
         updateRecommendation({ is_featured: featured });

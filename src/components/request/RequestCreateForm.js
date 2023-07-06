@@ -25,7 +25,7 @@ const RequestCreateForm = (props) => {
     const fetchRquestData = async () => {
       try {
         const { data: receiverData } = await axiosReq.get(
-          `/profiles/${receiver ? receiver : receiver_id}`
+          `/profiles/${receiver ? receiver : receiver_id}/`
         );
         setReceiverData(receiverData);
       } catch (err) {
@@ -65,7 +65,7 @@ const RequestCreateForm = (props) => {
     try {
       const { data: request } = !props?.edit
         ? await axiosReq.post("/requests/", formData)
-        : await axiosReq.put(`/requests/${props.id}`, formData);
+        : await axiosReq.put(`/requests/${props.id}/`, formData);
       onSubmitSucces(request);
     } catch (err) {
       console.log(err);
