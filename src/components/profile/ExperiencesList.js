@@ -5,7 +5,6 @@ import appStyles from "../../App.module.css";
 import Experience from "../../components/profile/Experience";
 import { Button, Card } from "react-bootstrap";
 
-
 export function ExperiencesList({
   is_owner,
   createExperience,
@@ -16,7 +15,7 @@ export function ExperiencesList({
   return (
     <Card className={`p-1 ${styles.Experience}`}>
       <div className={appStyles.CardHeader}>
-        <h3>Experiences:</h3>
+        <h3>Experiences</h3>
         {is_owner &&
           (createExperience ? (
             <span>
@@ -41,6 +40,7 @@ export function ExperiencesList({
           ))}
       </div>
       {!createExperience ? (
+        experiences.results.length > 0 &&
         experiences.results.map((experience) => (
           <Experience
             key={experience.id}
