@@ -57,7 +57,7 @@ function ProfilePage() {
         {hasLoaded ? (
           <>
             <ProfileHeader profile={profile} />
-            {experiences.results.length > 0 && (
+            
               <ExperiencesList
                 is_owner={is_owner}
                 experiences={experiences}
@@ -65,7 +65,6 @@ function ProfilePage() {
                 handleCreateExperience={handleCreateExperience}
                 setExperiences={setExperiences}
               />
-            )}
             <div className="mt-2">
               <RecommendationRouter profile_id={id} profile />
             </div>
