@@ -15,10 +15,10 @@ export function ProfileHeader({ profile }) {
         width="100"
         roundedCircle
       />
-      <span className={`mt-3 ${styles.Name}`}>{profile?.name}</span>
+      <span className={`mt-2 ${styles.Name}`}>{profile?.name}</span>
       <span className="text-muted">{profile?.title}</span>
       <div
-        className={` ${styles.Stats} d-flex flex-row justify-content-space-around align-items-center mt-3`}
+        className={` ${styles.Stats} d-flex flex-row justify-content-space-around align-items-center mt-2`}
       >
         <span className="pr-1">
           {profile?.recommendations_received_count}
@@ -36,11 +36,11 @@ export function ProfileHeader({ profile }) {
       <div className="d-flex mt-2">
         <Button className={`${btnStyles.Button}`}>Edit Profile</Button>
       </div>
-      <div className={`${appStyles.Content} mt-3`}>
+      <div className={`${appStyles.Content} mt-2`}>
         <span>{profile?.summary}</span>
       </div>
       {profile?.linkedin_profile_url && (
-        <div className="gap-3 mt-3 d-flex flex-row justify-content-center align-items-center">
+        <div className="gap-3 mt-2 d-flex flex-row justify-content-center align-items-center">
           <span>
             <Link to={profile?.linkedin_profile_url}>
               <i className="fa fa-linkedin"></i>
