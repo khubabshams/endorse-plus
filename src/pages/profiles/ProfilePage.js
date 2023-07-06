@@ -1,9 +1,10 @@
+import { ExperiencesList } from "../../components/profile/ExperiencesList";
 import { ProfileHeader } from "../../components/profile/ProfileHeader";
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useParams } from "react-router";
-import { Button, Card, Container } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 
 import {
   useProfileData,
@@ -12,13 +13,7 @@ import {
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Loader from "../../components/Loader";
-import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/Profile.module.css";
-import { Link } from "react-router-dom/cjs/react-router-dom";
-import appStyles from "../../App.module.css";
 import RecommendationRouter from "../recommendations/RecommendationRouter";
-import Experience from "../../components/profile/Experience";
-import ExperienceCreateEditForm from "../../components/profile/ExperienceCreateEditForm";
 
 function ProfilePage() {
   const currentUser = useCurrentUser();
@@ -36,7 +31,6 @@ function ProfilePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(is_owner);
       try {
         const [{ data: pageProfile }, { data: experiences }] =
           await Promise.all([
@@ -64,44 +58,13 @@ function ProfilePage() {
           <>
             <ProfileHeader profile={profile} />
             {experiences.results.length ? (
-              <Card className={`p-1 ${styles.Experience}`}>
-                <div className={appStyles.CardHeader}>
-                  <h3>Experiences:</h3>
-                  {is_owner &&
-                    (createExperience ? (
-                      <span>
-                        <Button
-                          variant="secondary"
-                          onClick={() => handleCreateExperience(false)}
-                          className={`fa-solid fa-arrow-left ${btnStyles.Button} ${btnStyles.Option}`}
-                        ></Button>
-                        <Button
-                          variant="secondary"
-                          form="experienceCreateEditForm"
-                          type="submit"
-                          className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
-                        ></Button>
-                      </span>
-                    ) : (
-                      <Button
-                        variant="secondary"
-                        onClick={() => handleCreateExperience(true)}
-                        className={`fa-solid fa-plus ${btnStyles.Button} ${btnStyles.Option}`}
-                      ></Button>
-                    ))}
-                </div>
-                {!createExperience ? (
-                  experiences.results.map((experience) => (
-                    <Experience
-                      key={experience.id}
-                      {...experience}
-                      setExperiences={setExperiences}
-                    />
-                  ))
-                ) : (
-                  <Experience new={true} setExperiences={setExperiences} />
-                )}
-              </Card>
+              <ExperiencesList
+                is_owner={is_owner}
+                experiences={experiences}
+                createExperience={createExperience}
+                handleCreateExperience={handleCreateExperience}
+                setExperiences={setExperiences}
+              />
             ) : (
               <></>
             )}

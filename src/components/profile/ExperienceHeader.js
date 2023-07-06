@@ -13,6 +13,7 @@ export function ExperienceHeader({
   is_current,
   is_owner,
   editMode,
+  setEditMode,
   handleEdit,
   handleDelete,
 }) {
@@ -45,14 +46,14 @@ export function ExperienceHeader({
             <>
               <Button
                 variant="secondary"
-                form="experienceCreateEditForm"
-                type="submit"
-                className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
+                onClick={() => setEditMode(false)}
+                className={`fa-solid fa-undo ${btnStyles.Button} ${btnStyles.Option}`}
               ></Button>
               <Button
                 variant="secondary"
-                onClick={handleDelete}
-                className={`fa-solid fa-trash ${btnStyles.Button} ${btnStyles.Option}`}
+                form="experienceCreateEditForm"
+                type="submit"
+                className={`fa-solid fa-floppy-disk ${btnStyles.Button} ${btnStyles.Option}`}
               ></Button>
             </>
           ))}

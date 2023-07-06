@@ -31,7 +31,6 @@ const ExperienceCreateEditForm = (props) => {
     const fetchCompaniesData = async () => {
       try {
         const { data: companiesData } = await axiosReq.get(`/companies/`);
-        console.log(companiesData);
         setCompanies(companiesData.results);
       } catch (err) {
         console.log(err);

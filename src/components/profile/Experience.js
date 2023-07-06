@@ -85,6 +85,7 @@ const Experience = (props) => {
             is_current,
             is_owner,
             editMode,
+            setEditMode,
             handleEdit,
             handleDelete,
           }}
