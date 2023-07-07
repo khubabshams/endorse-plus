@@ -50,7 +50,7 @@ export function ExperiencesList({
           />
         ))
       ) : (
-        <Experience new={true} setExperiences={setExperiences} />
+        <Experience createNew={true} setExperiences={setExperiences} />
       )}
     </Card>
   );

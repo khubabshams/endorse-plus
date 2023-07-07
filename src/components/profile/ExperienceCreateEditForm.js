@@ -90,7 +90,7 @@ const ExperienceCreateEditForm = (props) => {
     formData.append("description", description);
 
     try {
-      const { data: experience } = !props?.edit
+      const { data: experience } = props?.createNew
         ? await axiosReq.post("/experiences/", formData)
         : await axiosReq.put(`/experiences/${props.id}/`, formData);
       onSubmitSucces();
