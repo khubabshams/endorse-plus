@@ -25,19 +25,24 @@ const Experience = (props) => {
   } = props;
 
   const updateExperiences = (updatedData) => {
-    setExperiences((prevExperiences) => ({
-      ...prevExperiences,
-      results: props?.createExperience
-        ? prevExperiences.results.append({ ...updatedData })
-        : prevExperiences.results.map((experience) => {
-            return experience.id === id
-              ? {
-                  ...experience,
-                  ...updatedData,
-                }
-              : experience;
-          }),
-    }));
+    if (!props?.createExperience) {
+      setExperiences((prevExperiences) => ({
+        ...prevExperiences,
+        results: prevExperiences.results.map((experience) => {
+          return experience.id === id
+            ? {
+                ...experience,
+                ...updatedData,
+              }
+            : experience;
+        }),
+      }));
+    } else {
+      setExperiences((prevExperiences) => ({
+        ...prevExperiences,
+        results: [...prevExperiences.results, { ...updatedData }],
+      }));
+    }
   };
 
   const deleteExperience = () => {

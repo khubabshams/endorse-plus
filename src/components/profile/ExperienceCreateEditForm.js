@@ -12,6 +12,7 @@ const ExperienceCreateEditForm = (props) => {
     id: props?.id,
     title: props?.title,
     company: props?.company,
+    company_name: props?.company_name,
     date_from: props?.date_from,
     date_to: props?.date_to,
     description: props?.description,
@@ -53,10 +54,12 @@ const ExperienceCreateEditForm = (props) => {
     });
 
     if (name === "company") {
-      const company_name =
+      const comp_name =
         target.childNodes[target.selectedIndex].getAttribute("name");
-      props.updateExperiences &&
-        props.updateExperiences({ company_name: company_name });
+      setExperienceData({
+        ...experienceData,
+        company_name: comp_name,
+      });
     }
   };
 
@@ -64,6 +67,7 @@ const ExperienceCreateEditForm = (props) => {
     props.updateExperiences({
       title: title,
       company: company,
+      company_name: company_name,
       date_from: date_from,
       date_to: date_to,
       description: description,
