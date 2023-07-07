@@ -24,17 +24,19 @@ const Experience = (props) => {
     setExperiences,
   } = props;
 
-  const updateExperience = (updatedData) => {
-    setExperiences((prevRecommendations) => ({
-      ...prevRecommendations,
-      results: prevRecommendations.results.map((experience) => {
-        return experience.id === id
-          ? {
-              ...experience,
-              ...updatedData,
-            }
-          : experience;
-      }),
+  const updateExperiences = (updatedData) => {
+    setExperiences((prevExperiences) => ({
+      ...prevExperiences,
+      results: props?.createExperience
+        ? prevExperiences.results.append({ ...updatedData })
+        : prevExperiences.results.map((experience) => {
+            return experience.id === id
+              ? {
+                  ...experience,
+                  ...updatedData,
+                }
+              : experience;
+          }),
     }));
   };
 
@@ -92,13 +94,13 @@ const Experience = (props) => {
             {...props}
             edit={editMode}
             setEditMode={setEditMode}
-            updateExperience={updateExperience}
+            updateExperiences={updateExperiences}
           />
         ) : (
           <Card.Text className="p-1">
             {description}
             <br />
-            {recommendations_count && (
+            {recommendations_count > 0 && (
               <>
                 <span
                   className={`d-flex justify-content-center ${appStyles.Info}`}

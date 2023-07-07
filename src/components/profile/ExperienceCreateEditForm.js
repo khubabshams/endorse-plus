@@ -55,13 +55,13 @@ const ExperienceCreateEditForm = (props) => {
     if (name === "company") {
       const company_name =
         target.childNodes[target.selectedIndex].getAttribute("name");
-      props.updateExperience &&
-        props.updateExperience({ company_name: company_name });
+      props.updateExperiences &&
+        props.updateExperiences({ company_name: company_name });
     }
   };
 
   const onSubmitSucces = () => {
-    props.updateExperience({
+    props.updateExperiences({
       title: title,
       company: company,
       date_from: date_from,
@@ -84,9 +84,11 @@ const ExperienceCreateEditForm = (props) => {
 
     !is_current &&
       formData.append("date_to", moment(date_to).format("YYYY-MM-DD"));
-    is_current
-      ? formData.append("is_current", true)
-      : formData.append("is_current", false);
+    const current =
+      props?.createExperience && typeof is_current !== "boolean"
+        ? false
+        : is_current;
+    formData.append("is_current", current);
     formData.append("description", description);
 
     try {
