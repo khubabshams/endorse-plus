@@ -4,7 +4,7 @@ import appStyles from "../App.module.css";
 
 const CustomAlert = ({ error, detail = false }) => {
   return (
-    <>
+    <div className="mt-1">
       {error &&
         (!detail ? (
           error.map((message, idx) => (
@@ -17,7 +17,7 @@ const CustomAlert = ({ error, detail = false }) => {
             {error}
           </Alert>
         ))}
-    </>
+    </div>
   );
 };
 
