@@ -20,7 +20,7 @@ export const ProfileDataProvider = ({ children }) => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          `/profiles/?ordering=-boosts_count&`
+          `/profiles/?ordering=-recommendations_received_count&`
         );
         setProfileData((prevProfileData) => ({
           ...prevProfileData,
