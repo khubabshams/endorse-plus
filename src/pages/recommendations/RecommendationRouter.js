@@ -10,7 +10,7 @@ import TopEndorsedProfiles from "../../components/TopEndorsedProfiles";
 const RecommendationRouter = ({ profile_id, profile = false }) => {
   return (
     <Row>
-      <Col xs={12} md={9}>
+      <Col xs={!profile && 12} md={!profile && 9}>
         {!profile && <TopEndorsedProfiles mobile />}
 
         {profile_id ? (
@@ -53,9 +53,11 @@ const RecommendationRouter = ({ profile_id, profile = false }) => {
         )}
       </Col>
 
-      <Col md={3} className="d-none d-md-block">
-        {!profile && <TopEndorsedProfiles />}
-      </Col>
+      {!profile && (
+        <Col md={3} className="d-none d-md-block">
+          <TopEndorsedProfiles />
+        </Col>
+      )}
     </Row>
   );
 };
