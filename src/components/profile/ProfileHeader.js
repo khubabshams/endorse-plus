@@ -96,7 +96,7 @@ export function ProfileHeader({ profile, is_owner }) {
           </Link>
         )}
       </div>
-      <div className={`${appStyles.Content} mt-2`}>
+      <div className={`mt-2`}>
         <span>{profile?.summary}</span>
       </div>
 

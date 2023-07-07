@@ -3,8 +3,11 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import RecommendationRequest from "../../components/request/RecommendationRequest";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const RequestPage = () => {
+  useRedirect("loggedOut");
+
   const { id } = useParams();
   const [request, setRequests] = useState({ results: [] });
   const history = useHistory();

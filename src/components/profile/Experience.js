@@ -108,9 +108,7 @@ const Experience = (props) => {
                 <span
                   className={`d-flex justify-content-center ${appStyles.Info}`}
                 >
-                  <Link to={`/experiences/${id}`}>
-                    {recommendations_count} Endorses
-                  </Link>
+                  {recommendations_count} Endorses
                 </span>
               </>
             )}

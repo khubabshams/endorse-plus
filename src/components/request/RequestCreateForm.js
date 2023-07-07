@@ -4,8 +4,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RequestForm from "./RequestForm";
 import { Container } from "react-bootstrap";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const RequestCreateForm = (props) => {
+  useRedirect("loggedOut");
+
   const currentUser = useCurrentUser();
 
   const [requestData, setRequestData] = useState({

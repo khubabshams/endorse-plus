@@ -4,9 +4,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecommendationForm from "./RecommendationForm";
 import { Container } from "react-bootstrap";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const RecommendationCreateEditForm = (props) => {
   const currentUser = useCurrentUser();
+  useRedirect("loggedOut");
 
   const [recommendationData, setRecommendationData] = useState({
     receiver: props?.receiver,
