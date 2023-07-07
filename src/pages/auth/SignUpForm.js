@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
@@ -43,7 +43,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <>
+    <Container className="text-center bg-white p-5">
       <Form onSubmit={handleSubmit} className={styles.Form}>
         <Form.Group controlId="username">
           <Form.Label className="d-none">Username</Form.Label>
@@ -98,7 +98,7 @@ const SignUpForm = () => {
           Already have an account? <span>click here to sign in!</span>
         </Link>
       </Form>
-    </>
+    </Container>
   );
 };
 
