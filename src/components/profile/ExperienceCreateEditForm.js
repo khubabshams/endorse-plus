@@ -61,17 +61,15 @@ const ExperienceCreateEditForm = (props) => {
   };
 
   const onSubmitSucces = () => {
-    if (props?.edit) {
-      props.updateExperience({
-        title: title,
-        company: company,
-        date_from: date_from,
-        date_to: date_to,
-        description: description,
-        is_current: is_current,
-      });
-      props.setEditMode(false);
-    }
+    props.updateExperience({
+      title: title,
+      company: company,
+      date_from: date_from,
+      date_to: date_to,
+      description: description,
+      is_current: is_current,
+    });
+    props.setEditMode(false);
   };
 
   const handleSubmit = async (event) => {
@@ -86,7 +84,9 @@ const ExperienceCreateEditForm = (props) => {
 
     !is_current &&
       formData.append("date_to", moment(date_to).format("YYYY-MM-DD"));
-    formData.append("is_current", is_current);
+    is_current
+      ? formData.append("is_current", true)
+      : formData.append("is_current", false);
     formData.append("description", description);
 
     try {
