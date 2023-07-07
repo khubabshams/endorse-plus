@@ -21,7 +21,7 @@ const Experience = (props) => {
     company,
     company_name,
     recommendations_count,
-    createNew,
+    createExperience,
     setExperiences,
   } = props;
 
@@ -91,7 +91,6 @@ const Experience = (props) => {
         {editMode ? (
           <ExperienceCreateEditForm
             {...props}
-            createNew={createNew}
             edit={editMode}
             setEditMode={setEditMode}
             updateExperience={updateExperience}
