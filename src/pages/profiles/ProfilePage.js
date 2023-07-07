@@ -53,7 +53,7 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col lg={{ span: 10, offset: 1 }}>
         {hasLoaded ? (
           <>
             <ProfileHeader profile={profile} is_owner={is_owner} />
