@@ -1,8 +1,16 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
-import { Container, Card, Image } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Card,
+  Image,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import ProfileEditForm from "./ProfileEditForm";
 
 export function ProfileHeader({ profile, is_owner }) {
@@ -33,9 +41,7 @@ export function ProfileHeader({ profile, is_owner }) {
       </div>
       <span className={`mt-2 ${styles.Name}`}>{profile?.name}</span>
       <span className="text-muted">{profile?.title}</span>
-      <div
-        className={` ${styles.Stats} d-flex flex-row justify-content-space-around align-items-center mt-2`}
-      >
+      <div className={` ${styles.Stats} d-flex mt-2`}>
         <span className="pr-1">
           {profile?.recommendations_received_count}
           <span> Received </span>
@@ -49,21 +55,51 @@ export function ProfileHeader({ profile, is_owner }) {
           <span> Boosts</span>
         </span>
       </div>
+      <div className={`d-flex flex-row justify-content-space-between mt-2`}>
+        {!is_owner && (
+          <>
+            <Link to={`/recommendations/create/${profile?.id}/`}>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Recommend {profile?.name}</Tooltip>}
+              >
+                <span
+                  className={`${btnStyles.Button} fa-solid fa-user-check p-1`}
+                ></span>
+              </OverlayTrigger>
+            </Link>
+            <Link to={`/requests/create/${profile?.id}/`}>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Request Recommendation</Tooltip>}
+              >
+                <span
+                  className={`${btnStyles.Button} fa-solid fa-envelope p-1`}
+                ></span>
+              </OverlayTrigger>
+            </Link>
+          </>
+        )}
+        {profile?.linkedin_profile_url && (
+          <Link
+            to={{ pathname: `${profile?.linkedin_profile_url}` }}
+            target="_blank"
+          >
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>Visit {profile?.name}'s Linkedin Profile</Tooltip>
+              }
+            >
+              <span className={`${btnStyles.Button} fa fa-linkedin p-1`}></span>
+            </OverlayTrigger>
+          </Link>
+        )}
+      </div>
       <div className={`${appStyles.Content} mt-2`}>
         <span>{profile?.summary}</span>
       </div>
-      {profile?.linkedin_profile_url && (
-        <div className="gap-3 mt-2 d-flex flex-row justify-content-center align-items-center">
-          <span>
-            <Link
-              to={{ pathname: `${profile?.linkedin_profile_url}` }}
-              target="_blank"
-            >
-              <i className="fa fa-linkedin"></i>
-            </Link>
-          </span>
-        </div>
-      )}
+
       <div>
         <span className={`${styles.JoinDate}`}>
           Joined {profile?.created_at}
