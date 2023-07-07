@@ -22,8 +22,15 @@ const ExperienceCreateEditForm = (props) => {
   const [companies, setCompanies] = useState([]);
   const [errors, setErrors] = useState({});
 
-  const { title, date_from, date_to, description, company, is_current } =
-    experienceData;
+  const {
+    title,
+    date_from,
+    date_to,
+    description,
+    company,
+    company_name,
+    is_current,
+  } = experienceData;
 
   useEffect(() => {
     const fetchCompaniesData = async () => {
