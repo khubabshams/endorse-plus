@@ -30,7 +30,7 @@ const RequestsListPage = ({ filter = "", profile_id }) => {
           history.push("/un-authorised");
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 

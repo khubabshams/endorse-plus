@@ -51,7 +51,7 @@ const RecommendationRequest = (props) => {
           await axiosRes.delete(`/requests/${id}`);
           history.goBack();
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     }
@@ -65,7 +65,7 @@ const RecommendationRequest = (props) => {
         });
         updateRequest({ seen: seen });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   };

@@ -32,7 +32,7 @@ const RequestCreateForm = (props) => {
         );
         setReceiverData(receiverData);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -71,7 +71,7 @@ const RequestCreateForm = (props) => {
         : await axiosReq.put(`/requests/${props.id}/`, formData);
       onSubmitSucces(request);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

@@ -30,7 +30,7 @@ const ExperienceCreateEditForm = (props) => {
         const { data: companiesData } = await axiosReq.get(`/companies/`);
         setCompanies(companiesData.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -95,7 +95,7 @@ const ExperienceCreateEditForm = (props) => {
         : await axiosReq.put(`/experiences/${props.id}/`, formData);
       onSubmitSucces();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

@@ -62,7 +62,7 @@ const Experience = (props) => {
           await axiosRes.delete(`/experiences/${id}`);
           deleteExperience();
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     }

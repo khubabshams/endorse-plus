@@ -81,7 +81,7 @@ const Recommendation = (props) => {
           await axiosRes.delete(`/recommendations/${id}`);
           history.goBack();
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     }
@@ -98,7 +98,7 @@ const Recommendation = (props) => {
         boost_id: data.id,
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -107,7 +107,7 @@ const Recommendation = (props) => {
       await axiosRes.delete(`/boosts/${boost_id}`);
       updateRecommendation({ boosts_count: boosts_count - 1, boost_id: null });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -119,7 +119,7 @@ const Recommendation = (props) => {
         });
         updateRecommendation({ is_featured: featured });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   };

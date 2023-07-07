@@ -27,7 +27,7 @@ export const ProfileDataProvider = ({ children }) => {
           topEndorsedProfiles: data,
         }));
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 

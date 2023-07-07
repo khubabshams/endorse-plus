@@ -58,7 +58,7 @@ const RecommendationCreateEditForm = (props) => {
         setRelations(relationsData.results);
         setReceiverData(receiverData);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -112,7 +112,7 @@ const RecommendationCreateEditForm = (props) => {
         : await axiosReq.put(`/recommendations/${props.id}/`, formData);
       onSubmitSucces(recommendation);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
