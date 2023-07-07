@@ -85,7 +85,7 @@ const ProfileEditForm = ({ profile, setEditMode }) => {
   };
 
   return (
-    <div>
+    <div className="mb-2">
       <div className="d-flex justify-content-center">
         {image && (
           <Figure>
