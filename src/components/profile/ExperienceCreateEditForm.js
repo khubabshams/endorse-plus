@@ -90,7 +90,7 @@ const ExperienceCreateEditForm = (props) => {
 
     formData.append("profile", Number(currentUser?.profile_id));
     formData.append("title", title);
-    formData.append("company", company);
+    formData.append("company", Number(company));
     formData.append("date_from", moment(date_from).format("YYYY-MM-DD"));
 
     !is_current &&
