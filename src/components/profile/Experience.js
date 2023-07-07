@@ -6,7 +6,7 @@ import { ExperienceHeader } from "./ExperienceHeader";
 import ExperienceCreateEditForm from "./ExperienceCreateEditForm";
 
 const Experience = (props) => {
-  const [editMode, setEditMode] = useState(props?.new);
+  const [editMode, setEditMode] = useState(props?.createExperience);
 
   const {
     created_at,
@@ -21,7 +21,6 @@ const Experience = (props) => {
     company,
     company_name,
     recommendations_count,
-    createExperience,
     setExperiences,
   } = props;
 
@@ -71,7 +70,7 @@ const Experience = (props) => {
 
   return (
     <>
-      {!props.new && (
+      {!props.createExperience && (
         <ExperienceHeader
           {...{
             title,
