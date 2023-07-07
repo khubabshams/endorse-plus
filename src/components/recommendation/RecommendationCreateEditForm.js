@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RecommendationForm from "./RecommendationForm";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const RecommendationCreateEditForm = (props) => {

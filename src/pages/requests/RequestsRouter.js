@@ -1,5 +1,8 @@
 import React from "react";
-import { Col, Row, Tab, Nav } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Tab from "react-bootstrap/Tab";
+import Nav from "react-bootstrap/Nav";
 import RequestsListPage from "./RequestsListPage";
 import { useRedirect } from "../../hooks/useRedirect";
 

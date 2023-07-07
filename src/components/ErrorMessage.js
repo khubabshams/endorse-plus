@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import btnStyles from "../styles/Button.module.css";
 
 export function ErrorMessage({ image, message }) {
   const history = useHistory();
-  
+
   return (
     <Container className="text-center bg-white p-5">
       <img src={image} height={40} width={40} alt="Error 404" />

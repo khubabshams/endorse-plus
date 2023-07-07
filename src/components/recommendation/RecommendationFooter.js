@@ -1,7 +1,8 @@
 import React from "react";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 function RecommendationFooter({
   boost_id,

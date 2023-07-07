@@ -3,8 +3,8 @@ import { ProfileHeader } from "../../components/profile/ProfileHeader";
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useParams } from "react-router";
 import Card from "react-bootstrap/Card";
+import { useParams } from "react-router";
 
 import {
   useProfileData,
@@ -56,10 +56,7 @@ function ProfilePage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         {hasLoaded ? (
           <>
-            <ProfileHeader
-              profile={profile}
-              is_owner={is_owner}
-            />
+            <ProfileHeader profile={profile} is_owner={is_owner} />
 
             <ExperiencesList
               is_owner={is_owner}

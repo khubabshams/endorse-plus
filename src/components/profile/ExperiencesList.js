@@ -3,7 +3,8 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
 import appStyles from "../../App.module.css";
 import Experience from "../../components/profile/Experience";
-import { Button, Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 export function ExperiencesList({
   is_owner,

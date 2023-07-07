@@ -1,16 +1,12 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
-import {
-  Button,
-  Container,
-  Card,
-  Image,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import ProfileEditForm from "./ProfileEditForm";
 
 export function ProfileHeader({ profile, is_owner }) {

@@ -2,9 +2,12 @@ import React from "react";
 import { LoggedOutLinks } from "./LoggedOutLinks";
 import { LoggedInLinks } from "./LoggedInLinks";
 import styles from "../../styles/NavBar.module.css";
-import { Nav, Navbar, Container, Image } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import logo from "../../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import NavLink from "react-router-dom/NavLink";
 import {
   useCurrentUser,
   useSetCurrentUser,

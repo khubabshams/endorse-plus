@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import btnStyles from "../../styles/Button.module.css";
 import CustomAlert from "../CustomAlert";
 

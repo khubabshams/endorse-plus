@@ -1,7 +1,7 @@
 import { ProfileMobileTile } from "./profile/ProfileMobileTile";
 import { ProfileDesktopTile } from "./profile/ProfileDesktopTile";
 import React from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { useProfileData } from "../contexts/ProfileDataContext";
 
 const TopEndorsedProfiles = ({ mobile }) => {

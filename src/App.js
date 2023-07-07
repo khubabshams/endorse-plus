@@ -1,5 +1,5 @@
 import { AppRoutes } from "./AppRoutes";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
 import NavBar from "./components/nav/NavBar";
 import { useCurrentUser } from "./contexts/CurrentUserContext";

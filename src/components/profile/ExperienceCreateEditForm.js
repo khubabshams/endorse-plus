@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ExperienceForm from "./ExperienceForm";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import moment from "moment/moment";
 
 const ExperienceCreateEditForm = (props) => {
@@ -24,8 +23,6 @@ const ExperienceCreateEditForm = (props) => {
 
   const { title, date_from, date_to, description, company, is_current } =
     experienceData;
-
-  const history = useHistory();
 
   useEffect(() => {
     const fetchCompaniesData = async () => {

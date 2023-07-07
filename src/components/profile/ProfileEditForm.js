@@ -1,6 +1,9 @@
 import { React, useState, useRef } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
-import { Button, Figure, Form, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Figure from "react-bootstrap/Figure";
+import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import CustomAlert from "../CustomAlert";

@@ -1,9 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Avatar from "../Avatar";
 
 export function ExperienceHeader({
   title,

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Recommendation from "../../components/recommendation/Recommendation";
-import { Col, Form, Row } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import Loader from "../../components/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -41,7 +43,9 @@ const RecommendationsListPage = ({ filter = "" }) => {
     <>
       <Row>
         <Col>
-          <i className={`fas fa-search position-absolute text-muted ${appStyles.SearchIcon}`}></i>
+          <i
+            className={`fas fa-search position-absolute text-muted ${appStyles.SearchIcon}`}
+          ></i>
           <Form onSubmit={(event) => event.preventDefault()}>
             <Form.Control
               type="text"

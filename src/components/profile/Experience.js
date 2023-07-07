@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Card from "react-bootstrap/Card";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 import appStyles from "../../App.module.css";
 import { ExperienceHeader } from "./ExperienceHeader";
 import ExperienceCreateEditForm from "./ExperienceCreateEditForm";
 
 const Experience = (props) => {
-  const currentUser = useCurrentUser();
-  const history = useHistory();
   const [editMode, setEditMode] = useState(props?.new);
 
   const {
