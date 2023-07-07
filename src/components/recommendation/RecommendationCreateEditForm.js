@@ -23,8 +23,14 @@ const RecommendationCreateEditForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const { receiver_id } = useParams();
-  const { receiver, content, related_experience, relation } =
-    recommendationData;
+  const {
+    receiver,
+    content,
+    related_experience,
+    relation,
+    company_name,
+    relation_name,
+  } = recommendationData;
 
   const history = useHistory();
 
@@ -66,21 +72,23 @@ const RecommendationCreateEditForm = (props) => {
   }, [receiver, receiver_id]);
 
   const handleChange = (event) => {
+    const target = event.target;
+    const targ_name = target.name;
+    let values = { [targ_name]: target.value };
+
+    if (["related_experience", "relation"].includes(targ_name)) {
+      const name_val =
+        target.childNodes[target.selectedIndex].getAttribute("name");
+      values =
+        event.target.name === "related_experience"
+          ? { ...values, company_name: name_val }
+          : { ...values, relation_name: name_val };
+    }
+
     setRecommendationData({
       ...recommendationData,
-      [event.target.name]: event.target.value,
+      ...values,
     });
-    if (["related_experience", "relation"].includes(event.target.name)) {
-      const name =
-        event.target.childNodes[event.target.selectedIndex].getAttribute(
-          "name"
-        );
-      const updatedValue =
-        event.target.name === "related_experience"
-          ? { company_name: name }
-          : { relation_name: name };
-      props.updateRecommendation && props.updateRecommendation(updatedValue);
-    }
   };
 
   const onSubmitSucces = (recommendation) => {
@@ -89,6 +97,8 @@ const RecommendationCreateEditForm = (props) => {
         content: content,
         related_experience: related_experience,
         relation: relation,
+        company_name: company_name,
+        relation_name: relation_name,
       });
       props.setEditMode(false);
     } else {

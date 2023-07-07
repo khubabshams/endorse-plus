@@ -77,9 +77,9 @@ const ExperienceForm = ({
           required
         >
           <option></option>
-          {companies.map((company) => (
-            <option value={company.id} key={company.id} name={company.name}>
-              {company.name}
+          {companies.map((com) => (
+            <option value={com.id} key={com.id} company_name={com.name}>
+              {com.name}
             </option>
           ))}
         </Form.Control>

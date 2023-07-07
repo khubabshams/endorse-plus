@@ -27,8 +27,8 @@ const ExperienceCreateEditForm = (props) => {
     date_from,
     date_to,
     description,
-    company,
     company_name,
+    company,
     is_current,
   } = experienceData;
 
@@ -51,27 +51,27 @@ const ExperienceCreateEditForm = (props) => {
       [event.target.name]: event.target.checked,
     });
   };
+
   const handleChange = (event) => {
     const target = event.target;
-    const name = target.name;
+    const targ_name = target.name;
+    let values = { [targ_name]: target.value };
+
+    if (targ_name === "company") {
+      const comp_name =
+        target.childNodes[target.selectedIndex].getAttribute("company_name");
+      values = { ...values, company_name: comp_name };
+    }
 
     setExperienceData({
       ...experienceData,
-      [name]: target.value,
+      ...values,
     });
-
-    if (name === "company") {
-      const comp_name =
-        target.childNodes[target.selectedIndex].getAttribute("name");
-      setExperienceData({
-        ...experienceData,
-        company_name: comp_name,
-      });
-    }
   };
 
-  const onSubmitSucces = () => {
+  const onSubmitSucces = (experience) => {
     props.updateExperiences({
+      id: props.id || experience.id,
       title: title,
       company: company,
       company_name: company_name,
@@ -106,7 +106,7 @@ const ExperienceCreateEditForm = (props) => {
       const { data: experience } = props?.createExperience
         ? await axiosReq.post("/experiences/", formData)
         : await axiosReq.put(`/experiences/${props.id}/`, formData);
-      onSubmitSucces();
+      onSubmitSucces(experience);
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {
