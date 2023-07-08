@@ -25,7 +25,3 @@
 .Filled {
   color: black;
 }
-
-.Filled:hover {
-  color: c8c8ca8c;
-}
