@@ -27,7 +27,6 @@ const Avatar = ({
         {time ? (
           <span className={`text-muted ${styles.Text}`}>{time}</span>
         ) : null}
-
       </span>
     </div>
   );

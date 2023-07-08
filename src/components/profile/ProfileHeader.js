@@ -27,6 +27,7 @@ export function ProfileHeader({ profile, is_owner }) {
           src={profile?.image}
           height="100"
           width="100"
+          alt="avatar"
           roundedCircle
         />
         {is_owner && (

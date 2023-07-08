@@ -24,7 +24,7 @@
   - [Other Software and Tools](#other-software-and-tools)
 - [Implementation](#implementation)
   - [Front-End](#front-end)
-  - [Back-End API](#back-end-api)
+  - [Back-End](#back-end)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Features Left to Implement](#features-left-to-implement)
@@ -172,20 +172,157 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 
 # Implementation
 ## Front-End
-## Back-End API
+
+### React <!-- omit from toc -->
+
+React is an open-source JavaScript library that is used for building user interfaces in a declarative and efficient way. It is a component-based front-end library responsible only for the view layer of an MVC (Model View Controller) architecture. React is used to create modular user interfaces and it promotes the development of reusable UI components that display dynamic data[*](https://www.geeksforgeeks.org/react-js-introduction-working/). React is well-known for it is reusability, flexibility, simplicity, ease of use, and available wide range of community support. Many components were developed and reused throughout this project.
+- Top-endorsed Profiles `<RecommendationsListPage />`: developed and used on the home page in addition to displaying it in the user's profile
+- User's Avatar `<Avatar />`: reusable component used inside recommendation, request, and profile pages.
+- Warning Alert `<CustomAlert />`: is used within the site forms to provide the user with the feedback necessary.
+- Loading spinner `<Loader />`: is displayed in several places while the loading of the page content.
+- Error Message `<ErrorMessage />`: is used in error pages to display an image, navigation options, and appropriate messages.
+
+## Back-End
+
+The backend side of this platform was built using the Django Rest Framework. Linked with the Postgresql database to store the data and deployed on Heroku.
 
 [*Back to Top*](#table-of-contents)
 <hr>
 
 # Features
+
 ## Existing Features
+
+### Sign Up Form  <!-- omit from toc -->
+
+- Developed to help users create accounts to access all the platform features.
+- *User stories covered: 1*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Sign Up](docs/screenshots/signup.PNG)
+</details>
+
+### Sign In Form  <!-- omit from toc -->
+
+- Users can use the sign-in page to access thier recommendations and request.
+- Only logged-in users can create recommendations and requests and boost recommendations.
+- *User stories covered: 2*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Sign In](docs/screenshots/signin.PNG)
+</details>
+
+
+### Top-Endorsed Profiles  <!-- omit from toc -->
+
+- Users can see a list of the most recommended professionals' profiles on the home.
+- *User stories covered: 3*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Top-Endorsed Profiles](docs/screenshots/home.PNG)
+</details>
+
+### Recommendation Form  <!-- omit from toc -->
+
+- Users can recommend each other by visiting their profiles and clicking on the recommend user button.
+- A recommendation form will be displayed to enter the content, recommended experience, and recommender relationship to the recommendee.
+- On the recommendation edit or update the same form will be displayed with the previously entered values.
+- *User stories covered: 4, 6*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Recommendation Form](docs/screenshots/recommendation-form.PNG)
+</details>
+
+### Home Page - Recommendations Page  <!-- omit from toc -->
+- Includes received and sent recommendations. 
+- Contains all recommendations for anonymous users.
+- Users can boost or un-boost recommendations.
+- Only recommendations owners can delete or update them.
+- The recommendee or recommendation receiver can feature the recommendation so it could appear on the top of his/ her profile.
+- *User stories covered: 5, 6, 7, 8, 9*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Home Page](docs/screenshots/home.png)
+</details>
+
+
+### Boosted Page  <!-- omit from toc -->
+- Boosted page is like a journal of all recommendations boosted by the current user.
+- Boosted page only appears for logged-in users.
+- *User stories covered: 10*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Boosted Page](docs/screenshots/boosted.png)
+</details>
+
+### Request Form  <!-- omit from toc -->
+
+- Users can request each other privately for a recommendation by visiting their profiles and clicking on the request user button.
+- A request form will be displayed to enter the message.
+- *User stories covered: 11*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Request Form](docs/screenshots/request-form.PNG)
+</details>
+
+
+### Requests Page  <!-- omit from toc -->
+- Includes received and sent requests. 
+- Only logged-in users can access their sent or received requests.
+- The sender can only withdraw the request while the receiver can mark it as read or unread.
+- *User stories covered: 12,13*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Requests Page](docs/screenshots/requests.png)
+</details>
+
+
+### Profile Page  <!-- omit from toc -->
+- The profile page is the place where all the necessary information about the user is displayed.
+- Users can update their name, summary, Linkedin profile link, and experiences.
+- Users can see each other received or sent recommendations on the profile page.
+- *User stories covered: 14*
+
+<details>
+  <summary>Screenshot</summary>
+
+![Profile Page](docs/screenshots/profile.png)
+</details>
+
 ## Features Left to Implement
+
+- *Recommendation Badges* users can share a badge of a given recommendation on social or professional networks.
+- *LinkedIn API Integration* users can sign up via Linkedin and all profile and experience data could be imported then.
 
 [*Back to Top*](#table-of-contents)
 <hr>
 
 # Validation
 
+## [Lighthouse](https://developers.google.com/web/tools/lighthouse/) <!-- omit from toc -->
+- is used to validate performance, accessibility, SEO and best practice aspects of this site.
+## [W3C Validator](https://validator.w3.org/) <!-- omit from toc -->
+- was used to validate HTML code.
+## [Jigsaw Validator](https://jigsaw.w3.org/css-validator/)  <!-- omit from toc -->
+- was used to validate CSS code.
+## [Wave](https://wave.webaim.org/) <!-- omit from toc -->
+- was used to validate accessibility.
 [*Back to Top*](#table-of-contents)
 <hr>
 

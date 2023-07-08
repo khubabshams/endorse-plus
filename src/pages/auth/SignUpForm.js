@@ -46,7 +46,7 @@ const SignUpForm = () => {
     <Container className="bg-white p-5">
       <Form onSubmit={handleSubmit} className={styles.Form}>
         <Form.Text>
-          <h1>Sign In</h1>
+          <h1>Sign Up</h1>
         </Form.Text>
         <Form.Group controlId="username">
           <Form.Label className="d-none">Username</Form.Label>
