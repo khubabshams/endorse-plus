@@ -6,7 +6,7 @@
 
 **Developer:** [**Khubab Shamsuddin**](https://www.linkedin.com/in/kshamse/)
 
-[**Live Site URL**]([docs/amiresponsive.PNG](https://endorse-plus.herokuapp.com/))
+[**Live Site URL**](https://endorse-plus.herokuapp.com/)
 
 ![Endorse Plus multi-screens](docs/amiresponsive.PNG)
 
@@ -35,16 +35,49 @@
 
 
 # Overview
+Endorse Plus is a platform where professionals can provide evidence-based recommendations and endorsements to each other. Everyone can request recommendations privately. Users can boost recommendations on each other's profiles to increase the authenticity level of the endorsement. Endorse Plus is a site is where professionals can know more about each other skills and potentials.
 
 [*Back to Top*](#table-of-contents)
 <hr>
 
 # Goals
 
+## User's Goals <!-- omit from toc -->
+
+1. Exchange recommendations based on work-based qualities and skills. 
+2. Support and promote current or previous colleagues by sending and endorsing recommendations.
+3. Search for new talented professionals who are endorsed and boosted.
+
+## Site Onwer's Goals <!-- omit from toc -->
+
+1. Build a platform that foster support and promotion.
+2. Develop a site with straightforward use and considerable impact. 
+
+
 [*Back to Top*](#table-of-contents)
 <hr>
 
 # User Stories
+
+## Anonymous User <!-- omit from toc -->
+
+1. I can create an account so that I can request, send, and receive recommendations. (Must Have)
+2. I can sign in to my account so that I can manage my requests and recommendation. (Must Have)
+3. I can see the top-endorsed profiles so that I can get to know trending profiles. (Should Have)
+
+## Logged-in User <!-- omit from toc -->
+
+4.  I can create a recommendation so that I help other users gain professional endorsements. (Must Have)
+5. I can access all recommendations so that I can update or delete sent recommendations or locate and read others' recommendations. (Must Have)
+6. I can update a recommendation so that I can add or remove information. (Must Have)
+7. I can feature a received recommendation so that it appears on top of my profile. (Could Have)
+8. I can boost or un-boost others' recommendations so that I can affect the authenticity of a recommendation. (Must Have)
+9.  I can delete a recommendation so that I pull back a given recommendation. (Must Have)
+10. I can access boosted recommendations so that I can go back to it. (Should Have)
+11. I can request others to recommend me so that I could gain more professional endorsements. (Must Have)
+12. I can read the received requests and the ones I sent so that I could recommend others and expect others to recommend me based on my requests. (Must Have)
+13. I can withdraw sent requests so that I pull back my request whenever I want. (Could Have)
+14. I can update my profile data so that I will have my latest work information on it. (Must Have)
 
 [*Back to Top*](#table-of-contents)
 <hr>
