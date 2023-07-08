@@ -91,7 +91,7 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 <details>
   <summary>Colours</summary>
 
-![Colours](docs/colours.PNG)
+![Colours](docs/colours.png)
 </details>
 
 <details>
@@ -125,10 +125,48 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 <hr>
 
 # Technologies Used
+
 ## Languages
+
+- HTML 
+- CSS
+- Javascript
+  
 ## Libraries
+
+- [React](https://react.dev/) is used for building user interfaces as components and controlling the platform's business logic and handling users' actions.
+- [Axios](https://www.npmjs.com/package/axios) is used to send various types of API queries to the backend server.
+- [React Router](https://www.npmjs.com/package/react-router-dom) is used to implement a single-page application, handling navigation through the platform without needing to refresh the page.
+- [React Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction/) is used to enhance user interface responsiveness and styles.
+- [React JWT Decode](https://www.npmjs.com/package/jwt-decode) is used to decode the authentication refresh token and stop the application from making unnecessary API requests.
+- [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) is used to load recommendations and requests automatically on user scrolling action.
+
 ## Other Software and Tools
 
+- [Visual Studio Code](https://code.visualstudio.com/) was used as a code editor to develop this project.
+- [Gitpod](https://gitpod.io/) was used as an online development environment to develop and test this project.
+- [Github](https://github.com/) was used to store the code of this project.
+- [Heroku](https://www.heroku.com/) was used for the deployment of this platform's live site. 
+- [Chrome dev tools](https://developer.chrome.com/docs/devtools/) were used to test and debug the code of the site. 
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse/) was used to test the site based on best practice aspects.
+- [W3C Validator](https://validator.w3.org/) was used to validate HTML code.
+- [Jigsaw Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code.
+- [Wave](https://wave.webaim.org/) was used to validate accessibility.
+- [Mockitt](https://mockitt.wondershare.com/) was used to create the sites' mockups.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to generate multiple screen views of the site.
+- [Google Fonts](https://fonts.google.com/) was used to import sites' fonts.
+- [Font Awesome](https://fontawesome.com/) was used to import the icons on this site.
+- [Canva](https://www.canva.com/) was used to create the logo and colours palette of this site.
+- [Freepik](https://www.freepik.com/) was used to download the users' profile photos and error page icons. 
+- [Favicon Converter](https://favicon.io/favicon-converter) was used to convert the created logo image to a favicon.
+- [QuillBot](https://quillbot.com/) was used to check the grammar of the readme file.
+- [Google Translate](https://translate.google.com/) was used to find translations needed for the readme file.
+- [Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly) was used to check the grammar of the readme file on VS Code.
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) was used to generate the table of contents and organise the readme file on VS Code.
+- [Glean](https://marketplace.visualstudio.com/items?itemName=wix.glean) was used to extract React components to separate files.
+- [VS Code ES7+ React/Redux/React-Native/JS snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) were used mainly to shortcut the creation of the functional components.
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) was used to format and organise the JSX code and files.
+  
 [*Back to Top*](#table-of-contents)
 <hr>
 
