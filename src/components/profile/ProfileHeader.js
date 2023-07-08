@@ -29,11 +29,13 @@ export function ProfileHeader({ profile, is_owner }) {
           width="100"
           roundedCircle
         />
-        <span
-          variant="secondary"
-          onClick={handleEdit}
-          className={`fa-solid fa-pen-to-square align-self-start`}
-        ></span>
+        {is_owner && (
+          <span
+            variant="secondary"
+            onClick={handleEdit}
+            className={`fa-solid fa-pen-to-square align-self-start`}
+          ></span>
+        )}
       </div>
       <span className={`mt-2 ${styles.Name}`}>{profile?.name}</span>
       <span className="text-muted">{profile?.title}</span>
