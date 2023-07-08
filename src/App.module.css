@@ -22,6 +22,7 @@ a {
 
 a:hover {
   text-decoration: none;
+  font-size: 110%;
   color: inherit;
 }
 
@@ -44,6 +45,7 @@ a:hover {
 
 .Content {
   font-size: 95%;
+  font-family: "Vollkorn", sans-serif;
 }
 
 .Note {

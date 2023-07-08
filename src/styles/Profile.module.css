@@ -1,23 +1,22 @@
 .Name {
-    font-size: 120%;
-    font-weight: bold;
+  font-size: 120%;
+  font-weight: bold;
 }
-.Stats{
-    font-size: 90%;
-}
-
-.JoinDate, .Experience {
-    font-size: 70%;
+.Stats {
+  font-size: 90%;
 }
 
-.Experience h3, .Experience h4 {
-    font-size: 120%;
-    font-weight: bold;
+.JoinDate {
+  font-size: 70%;
 }
 
-.CarouselButton {
-font-size: 150%;
-    color: black;
-    /* background-color: blue; */
+.Experience {
+  font-family: "Vollkorn", sans-serif;
+  font-size: 85%;
+}
 
+.Experience h3,
+.Experience h4 {
+  font-weight: bold;
+  font-size: 100%;
 }
