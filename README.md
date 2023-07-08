@@ -35,7 +35,7 @@
 
 
 # Overview
-Endorse Plus is a platform where professionals can provide evidence-based recommendations and endorsements to each other. Everyone can request recommendations privately. Users can boost recommendations on each other's profiles to increase the authenticity level of the endorsement. Endorse Plus is a site is where professionals can know more about each other skills and potentials.
+Endorse Plus is a platform where professionals can provide evidence-based recommendations and endorsements to each other. Everyone can request recommendations privately. Users can boost recommendations on each other's profiles to increase the authenticity level of the endorsement. Endorse Plus is a site where professionals can know more about each other skills and potential.
 
 [*Back to Top*](#table-of-contents)
 <hr>
@@ -45,12 +45,12 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 ## User's Goals <!-- omit from toc -->
 
 1. Exchange recommendations based on work-based qualities and skills. 
-2. Support and promote current or previous colleagues by sending and endorsing recommendations.
+2. Support and promote current or previous colleagues by sending and boosting recommendations.
 3. Search for new talented professionals who are endorsed and boosted.
 
 ## Site Onwer's Goals <!-- omit from toc -->
 
-1. Build a platform that foster support and promotion.
+1. Build a platform that fosters support and promotion.
 2. Develop a site with straightforward use and considerable impact. 
 
 
@@ -73,7 +73,7 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 7. I can feature a received recommendation so that it appears on top of my profile. (Could Have)
 8. I can boost or un-boost others' recommendations so that I can affect the authenticity of a recommendation. (Must Have)
 9.  I can delete a recommendation so that I pull back a given recommendation. (Must Have)
-10. I can access boosted recommendations so that I can go back to it. (Should Have)
+10. I can access boosted recommendations so that I can go back to them. (Should Have)
 11. I can request others to recommend me so that I could gain more professional endorsements. (Must Have)
 12. I can read the received requests and the ones I sent so that I could recommend others and expect others to recommend me based on my requests. (Must Have)
 13. I can withdraw sent requests so that I pull back my request whenever I want. (Could Have)
@@ -83,8 +83,46 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 <hr>
 
 # Design
+
 ## Colours and Fonts
+
+- The used colours and fonts on this site reflect the professional theme and provide the required contrast and clarity.
+
+<details>
+  <summary>Colours<summary>
+
+  ![Colours](docs/colours.PNG)
+</details>
+
+<details>
+  <summary>Fonts<summary>
+
+  ![Lora: Headers & Menus](docs/lora-font.PNG)
+
+  
+  ![Volkorn: Main Content](docs/volkorn-font.PNG)
+</details>
+
 ## Mockups
+
+<details>
+  <summary>Home Page<summary>
+
+  ![Home Page](docs/mockups/home.png)
+</details>
+
+<details>
+  <summary>Boosted Page<summary>
+
+  ![Boosted Page](docs/mockups/boosted.png)
+</details>
+
+<details>
+  <summary>Requests Page<summary>
+
+  ![Requests Page](docs/mockups/requests.png)
+</details>
+
 
 [*Back to Top*](#table-of-contents)
 <hr>
