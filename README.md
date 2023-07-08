@@ -151,7 +151,6 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse/) was used to test the site based on best practice aspects.
 - [W3C Validator](https://validator.w3.org/) was used to validate HTML code.
 - [Jigsaw Validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code.
-- [Wave](https://wave.webaim.org/) was used to validate accessibility.
 - [Mockitt](https://mockitt.wondershare.com/) was used to create the sites' mockups.
 - [Am I Responsive](https://ui.dev/amiresponsive) was used to generate multiple screen views of the site.
 - [Google Fonts](https://fonts.google.com/) was used to import sites' fonts.
@@ -316,13 +315,122 @@ The backend side of this platform was built using the Django Rest Framework. Lin
 # Validation
 
 ## [Lighthouse](https://developers.google.com/web/tools/lighthouse/) <!-- omit from toc -->
-- is used to validate performance, accessibility, SEO and best practice aspects of this site.
+The Lighthouse tool is used to validate performance, accessibility, SEO and best practice aspects of this site and it is generated reports were as follows:
+
+<details>
+  <summary>Home Page</summary>
+
+![Home Page](docs/validators/lighthouse-home.PNG)
+</details>
+
+<details>
+  <summary>Boosted Page</summary>
+
+![Boosted Page](docs/validators/lighthouse-boosted.PNG)
+</details>
+
+<details>
+  <summary>Requests Page</summary>
+
+![Requests Page](docs/validators/lighthouse-requests.PNG)
+</details>
+
+<details>
+  <summary>Profile Page</summary>
+
+![Profile Page](docs/validators/lighthouse-profile.PNG)
+</details>
+
+<details>
+  <summary>Recommendation Page</summary>
+
+![Recommendation Page](docs/validators/lighthouse-recommendation.PNG)
+</details>
+
+<details>
+  <summary>Request Page</summary>
+
+![Request Page](docs/validators/lighthouse-request.PNG)
+</details>
+
 ## [W3C Validator](https://validator.w3.org/) <!-- omit from toc -->
-- was used to validate HTML code.
+Nu HTML Checker of the W3 Organisation was used to validate the HTML code of this project and reports were as follows:
+
+<details>
+  <summary>Home Page</summary>
+
+![Home Page](docs/validators/w3c-home.PNG)
+</details>
+
+<details>
+  <summary>Boosted Page</summary>
+
+![Boosted Page](docs/validators/w3c-boosted.PNG)
+</details>
+
+<details>
+  <summary>Requests Page</summary>
+
+![Requests Page](docs/validators/w3c-requests.PNG)
+</details>
+
+<details>
+  <summary>Profile Page</summary>
+
+![Profile Page](docs/validators/w3c-profile.PNG)
+</details>
+
+<details>
+  <summary>Recommendation Page</summary>
+
+![Recommendation Page](docs/validators/w3c-recommendation.PNG)
+</details>
+
+<details>
+  <summary>Request Page</summary>
+
+![Request Page](docs/validators/w3c-request.PNG)
+</details>
+
 ## [Jigsaw Validator](https://jigsaw.w3.org/css-validator/)  <!-- omit from toc -->
-- was used to validate CSS code.
-## [Wave](https://wave.webaim.org/) <!-- omit from toc -->
-- was used to validate accessibility.
+The Jigsaw of the W3 Organisation was used to validate the CSS code and discovered issue was resolved.
+
+<details>
+  <summary>Home Page</summary>
+
+![Home Page](docs/validators/jigsaw-home.PNG)
+</details>
+
+<details>
+  <summary>Boosted Page</summary>
+
+![Boosted Page](docs/validators/jigsaw-boosted.PNG)
+</details>
+
+<details>
+  <summary>Requests Page</summary>
+
+![Requests Page](docs/validators/jigsaw-requests.PNG)
+</details>
+
+<details>
+  <summary>Profile Page</summary>
+
+![Profile Page](docs/validators/jigsaw-profile.PNG)
+</details>
+
+<details>
+  <summary>Recommendation Page</summary>
+
+![Recommendation Page](docs/validators/jigsaw-recommendation.PNG)
+</details>
+
+<details>
+  <summary>Request Page</summary>
+
+![Request Page](docs/validators/jigsaw-request.PNG)
+</details>
+
 [*Back to Top*](#table-of-contents)
 <hr>
 
