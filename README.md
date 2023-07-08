@@ -555,6 +555,30 @@ __14. I can update my profile data so that I will have my latest work informatio
 
 # Configurations
 
+## Fork This Repository <!-- omit from toc -->
+
+<details>
+  <summary>What is the procedure for forking this repository?</summary>
+
+1. Click the `Fork button` in the top right corner of this page.
+2. On `Create a new fork` adjust the repository `name` and `description` if necessary.
+3. select `Create fork`.
+</details>
+
+
+## Make Local Clone <!-- omit from toc -->
+
+<details>
+  <summary>How to create a local clone of this repository?</summary>
+
+1. Click the `<> Code` button at the top of this page.
+2. Choose `HTTPS` from the drop-down menu.
+3. To copy the URL, click on the `clipboard button`.
+4. Open the terminal where you wish to clone the repository on your PC.
+Enter the command: `git clone [copied URL]` and enter the Github account `username` and `password` press Enter.
+</details>
+
+
 [*Back to Top*](#table-of-contents)
 <hr>
 
