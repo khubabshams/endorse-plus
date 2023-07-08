@@ -184,6 +184,7 @@ React is an open-source JavaScript library that is used for building user interf
 ## Back-End
 
 The backend side of this platform was built using the Django Rest Framework. Linked with the Postgresql database to store the data and deployed on Heroku.
+[**(Backend Code Repository)**](https://github.com/kshamse/endorse-plus-backend)
 
 [*Back to Top*](#table-of-contents)
 <hr>
@@ -435,6 +436,119 @@ The Jigsaw of the W3 Organisation was used to validate the CSS code and discover
 <hr>
 
 # Testing
+
+## Manual Testing  <!-- omit from toc -->
+
+__1. I can create an account so that I can request, send, and receive recommendations__
+
+| Step                                                                  | Expected Result                                                                                                                                                | Actual Result     |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Open https://endorse-plus.herokuapp.com/                              | `Home page` should be loaded.                                                                                                                                  | Works as expected |
+| Click on the `Sign Up` link on the top navigation bar.                | `Sign Up Form` should be loaded.                                                                                                                               | Works as expected |
+| User need to enter the username, password, and password confirmation. | User should be forwared to the `Sign In` page if the entry is successfully done otherwise warning will be displayed with the reason of the submittion failure. | Works as expected |
+
+
+__2. I can sign in to my account so that I can manage my requests and recommendation__
+
+| Step                                                                                | Expected Result                                                                                                                                             | Actual Result     |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Sign In` link on the top navigation bar.                              | `Sign In Form` should be loaded.                                                                                                                            | Works as expected |
+| User need to enter the username and password provided on the registeration process. | User should be forwared to the `Home` page if the entry is successfully done otherwise warning will be displayed with the reason of the submittion failure. | Works as expected |
+
+
+__3. I can see the top-endorsed profiles so that I can get to know trending profiles__
+
+| Step                                                | Expected Result                                                                                                                                                                  | Actual Result     |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Home` link on the top navigation bar. | `Home page` should be loaded includes top endorsed profile on the right side (on desktops and tablets) or the top of the home page below the navigation bar (on mobile devices). | Works as expected |
+
+
+__4.  I can create a recommendation so that I help other users gain professional endorsements__
+
+| Step                                                                                                                                           | Expected Result                                                                 | Actual Result     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------- |
+| After signing in go to the user profile URL `https://endorse-plus.herokuapp.com/profiles/{profile_id}`.                                        | `Profile page` should be loaded.                                                | Works as expected |
+| Click on the `Recommend User` button below the name of the user.                                                                               | `Recommendation Form` should loaded                                             | Works as expected |
+| Enter the related experience need to recommend user for, and work relationship with the recommendee in addition to the recommendation content. | `Recommendation` should be submitted and user should be forwared to it is page. | Works as expected |
+
+
+__5. I can access all recommendations so that I can update or delete sent recommendations or locate and read others' recommendations__
+
+| Step                                                                                                    | Expected Result                                                                                                                            | Actual Result     |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| Click on the `Home` link on the top navigation bar.                                                     | `Home page` should be loaded includes tabs of sent and received recommendations if the user is logged in or all recommendations otherwise. | Works as expected |
+| Users can click on `Delete` or `Edit` buttons on their sent recommendations or `Feature` received ones. | an Alert of delete confirmation in case of the deletion. `Recommendation Form` should loaded if edit button pushed.                        | Works as expected |
+
+
+__6. I can update a recommendation so that I can add or remove information__
+
+| Step                                                                                | Expected Result                                                                                           | Actual Result     |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Edit` button on the top right of the recommendation needed to update. | `Recommendation Form` should loaded                                                                       | Works as expected |
+| Enter the new recommendation data needed to update or add.                          | `Recommendation` should be updated if the entry is successfull otherwise a warning message will be shown. | Works as expected |
+
+
+__7. I can feature a received recommendation so that it appears on top of my profile__
+
+| Step                                                                                      | Expected Result                                                                                                                                    | Actual Result     |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Feature` button on the bottom left of the recommendation needed to feature. | Feature button should be shown as clicked. Featured recommendation should appear on the user profile on the top of other received recommendations. | Works as expected |
+
+
+__8. I can boost or un-boost others' recommendations so that I can affect the authenticity of __a recommendation__
+
+| Step                                                                                                           | Expected Result                                                                                             | Actual Result     |
+| -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Boost` or `Un Boost` buttons on the bottom left of the recommendation needed to update boost on. | Boost button should be updated as clicked or not. Boosted recommendation should appear on the boosted page. | Works as expected |
+
+
+__9.  I can delete a recommendation so that I pull back a given recommendation__
+
+| Step                                                                                  | Expected Result                                                                     | Actual Result     |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Delete` button on the top right of the recommendation needed to delete. | Confirmation alert should be shown.                                                 | Works as expected |
+| Click on `OK` to confirm the recommendation deletion decision.                        | `Recommendation` should be deleted and user should be forwarded to the `Home Page`. | Works as expected |
+
+
+__10. I can access boosted recommendations so that I can go back to them__
+
+| Step                                                   | Expected Result                                                       | Actual Result     |
+| ------------------------------------------------------ | --------------------------------------------------------------------- | ----------------- |
+| Click on the `Boosted` link on the top navigation bar. | `Boosted page` should be loaded includes all boosted recommendations. | Works as expected |
+
+
+__11. I can request others to recommend me so that I could gain more professional endorsements__
+
+| Step                                                                                                    | Expected Result                                                          | Actual Result     |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------------- |
+| After signing in go to the user profile URL `https://endorse-plus.herokuapp.com/profiles/{profile_id}`. | `Profile page` should be loaded.                                         | Works as expected |
+| Click on the `Request Recommendation` User button below the name of the user.                           | `Request Form` should loaded                                             | Works as expected |
+| Enter the request message need to send.                                                                 | `Request` should be submitted and user should be forwared to it is page. | Works as expected |
+
+
+__12. I can read the received requests and the ones I sent so that I could recommend others and expect others to recommend me based on my requests__
+
+| Step                                                    | Expected Result                                                        | Actual Result     |
+| ------------------------------------------------------- | ---------------------------------------------------------------------- | ----------------- |
+| Click on the `Requests` link on the top navigation bar. | `Requests page` should be loaded includes all boosted recommendations. | Works as expected |
+
+
+__13. I can withdraw sent requests so that I pull back my request whenever I want__
+
+| Step                                                                             | Expected Result                     | Actual Result     |
+| -------------------------------------------------------------------------------- | ----------------------------------- | ----------------- |
+| Click on the `Withdraw` button on the top right of the request needed to delete. | Confirmation alert should be shown. | Works as expected |
+| Click on `OK` to confirm the request deletion decision.                          | `Request` should be deleted.        | Works as expected |
+
+
+__14. I can update my profile data so that I will have my latest work information on it__
+
+| Step                                                                                                    | Expected Result                                                                                                                               | Actual Result     |
+| ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Click on the `Avatar Image` link on the top navigation bar.                                             | `Profile page` should be loaded includes tabs of sent and received recommendations if the user is logged in or all recommendations otherwise. | Works as expected |
+| Click on the `Edit` button near to the profile image.                                                   | `Profile Form` should loaded                                                                                                                  | Works as expected |
+| Enter the new title, summary, linkedin profile link data or update the name and click on `Save` button. | `Profile` should be updated if the entry is successfull otherwise a warning message will be shown.                                            | Works as expected |
+
 
 [*Back to Top*](#table-of-contents)
 <hr>
