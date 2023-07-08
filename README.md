@@ -89,40 +89,37 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 - The used colours and fonts on this site reflect the professional theme and provide the required contrast and clarity.
 
 <details>
-  <summary>Colours<summary>
+  <summary>Colours</summary>
 
-  ![Colours](docs/colours.PNG)
+![Colours](docs/colours.PNG)
 </details>
 
 <details>
-  <summary>Fonts<summary>
+  <summary>Fonts</summary>
 
-  ![Lora: Headers & Menus](docs/lora-font.PNG)
-
-  
-  ![Volkorn: Main Content](docs/volkorn-font.PNG)
+![Lora: Headers & Menus](docs/lora-font.PNG)
+![Volkorn: Main Content](docs/volkorn-font.PNG)
 </details>
 
 ## Mockups
 
 <details>
-  <summary>Home Page<summary>
+  <summary>Home Page</summary>
 
-  ![Home Page](docs/mockups/home.png)
+![Home Page](docs/mockups/home.png)
 </details>
 
 <details>
-  <summary>Boosted Page<summary>
+  <summary>Boosted Page</summary>
 
-  ![Boosted Page](docs/mockups/boosted.png)
+![Boosted Page](docs/mockups/boosted.png)
 </details>
 
 <details>
-  <summary>Requests Page<summary>
+  <summary>Requests Page</summary>
 
-  ![Requests Page](docs/mockups/requests.png)
+![Requests Page](docs/mockups/requests.png)
 </details>
-
 
 [*Back to Top*](#table-of-contents)
 <hr>
