@@ -140,6 +140,7 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 - [React Bootstrap](https://react-bootstrap-v4.netlify.app/getting-started/introduction/) is used to enhance user interface responsiveness and styles.
 - [React JWT Decode](https://www.npmjs.com/package/jwt-decode) is used to decode the authentication refresh token and stop the application from making unnecessary API requests.
 - [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) is used to load recommendations and requests automatically on user scrolling action.
+- [MomentJs Library](https://momentjs.com/) is used to change React date input format to match the server format.
 
 ## Other Software and Tools
 
@@ -156,7 +157,8 @@ Endorse Plus is a platform where professionals can provide evidence-based recomm
 - [Google Fonts](https://fonts.google.com/) was used to import sites' fonts.
 - [Font Awesome](https://fontawesome.com/) was used to import the icons on this site.
 - [Canva](https://www.canva.com/) was used to create the logo and colours palette of this site.
-- [Freepik](https://www.freepik.com/) was used to download the users' profile photos and error page icons. 
+- [Pexels](https://www.pexels.com) was used to download the users' profile photos
+- [Freepik](https://www.freepik.com/) was used to download the  error page icons. 
 - [Favicon Converter](https://favicon.io/favicon-converter) was used to convert the created logo image to a favicon.
 - [QuillBot](https://quillbot.com/) was used to check the grammar of the readme file.
 - [Google Translate](https://translate.google.com/) was used to find translations needed for the readme file.
@@ -583,6 +585,24 @@ Enter the command: `git clone [copied URL]` and enter the Github account `userna
 <hr>
 
 # Credit
+
+- This project developed following the [Code Institute Moments walkthrough project](https://github.com/Code-Institute-Solutions/moments/tree/master).
+- [React Bootstrap documentation](https://react-bootstrap-v4.netlify.app/components/) used to understand and use the needed bootstrap components.
+- Fonts used in this site were inspired by [Visme](https://visme.co/blog/elegant-fonts/) and [Typewolf](https://www.typewolf.com/vollkorn) articles and imported from [Google Fonts](https://fonts.google.com/).
+- Using spread operators inside useState inspired by [owdji](https://stackoverflow.com/questions/70507395/create-an-array-of-objects-with-usestate-and-spread-syntax) and [codmitu](https://stackoverflow.com/questions/72225342/how-to-add-items-to-array-in-react) answers.
+- Promise all use was based on [Siddhant's](https://stackoverflow.com/questions/67073886/how-to-combine-multiple-api-requests-in-one-function-with-fetch-in-react) answer.
+- Users' profile avatars for [Jane](https://www.pexels.com/photo/photo-of-a-woman-smiling-1520760/) and [John](https://www.pexels.com/photo/smiling-man-with-laptop-and-eyeglasses-7752846/) were downloaded from the [Pexels](https://www.pexels.com) website.
+- Error icons for [not found](https://www.freepik.com/icon/404-error_1078490) and [un authorised](https://www.freepik.com/icon/computer_6358087) pages were downloaded from [Freepik](https://www.freepik.com/) website.
+- Alert call in react is based on [RIYAJ KHAN's](https://stackoverflow.com/questions/52034868/confirm-window-in-react) answer.
+- a submit button in React outside the form is inspired by [Pavlo Kyrylenko's](https://stackoverflow.com/questions/52577141/how-to-submit-form-from-a-button-outside-that-component-in-react) answer.
+- Getting the value of an added attribute on a selection option is based on [squgeim's](https://stackoverflow.com/questions/43222540/get-selected-option-attribute-in-react) answer.
+- Favicon converter using [Favicon Converter](https://favicon.io/favicon-converter/).
+- Profile page code is taken from the Bootstrap 5 Profile card code of [Upasana Chauhan's](https://bbbootstrap.com/snippets/bootstrap-5-profile-card-animation-74461039).
+- Changing the React date format was inspired by [Mr. Ratnadeep's](https://stackoverflow.com/questions/50960984/date-formatting-within-react-bootstrap-table) answer and developed using [MomentJs Library](https://momentjs.com/).
+- Making a link routing to an external site is an idea from [Víctor Daniel's](https://stackoverflow.com/questions/42914666/react-router-external-link) answer.
+- Fixing `SyntaxError: Cannot use import statement outside a module` by downgrading the Axios library version is based on this [Github issue](https://github.com/axios/axios/issues/5185)
+- Recommendations content taken from [Request Letters](https://requestletters.com/home/how-to-write-a-short-recommendation-letter-with-sample).
+- Duties content is taken from [Great Sample Resume's](https://www.greatsampleresume.com/job-responsibilities/computer-software/associate-engineer) and [Glassdoor's](https://www.glassdoor.com/Career/software-manager-career_KO0,16.htm) articles.
 
 [*Back to Top*](#table-of-contents)
 <hr>
